@@ -13,7 +13,7 @@ void main()
         scanf("%d",&a[i]);
 
     }
-    printf("enter the posistion to be replaced");// to enter the posistion tpo be replaced
+    printf("enter the posistion to be replaced");//to enter the posistion tpo be replaced
     scanf("%d",&p);             //storing the value to variable p
     printf("enter the number ");    //enter the new number
     scanf("%d",&q);         //storing value to variable q

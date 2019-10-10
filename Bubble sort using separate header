@@ -1,4 +1,4 @@
-//bubblesort.cpp program
+/*  bubblesort.cpp program
 
 #include <stdio.h>
 #include <stdlib.h>

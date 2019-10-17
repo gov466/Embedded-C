@@ -1,24 +1,22 @@
-/* C Program to Implement a Queue using an Array */
-
 #include <stdio.h>
+#include<stdlib.h>
 
  
 
-#define MAX 50  //defining maximum size of array
-
+#define MAX 50
  
 
-void insert();    //prototype
+void insert();
 
 void delete();
 
 void display();
 
-int queue_array[MAX];   //array for elements in queue
+int queue_array[MAX];
 
-int rear = - 1;    //setting initial value of rear and front as -1 meant that queue is empty
+int tail = - 1;
 
-int front = - 1;
+int head = - 1;
 
 main()
 
@@ -86,7 +84,7 @@ void insert()
 
     int add_item;
 
-    if (rear == MAX - 1)
+    if (tail == MAX - 1)
 
     printf("Queue Overflow \n");
 
@@ -94,19 +92,19 @@ void insert()
 
     {
 
-        if (front == - 1)
+        if (head == - 1)
 
         /*If queue is initially empty */
 
-        front = 0;
+        head = 0;
 
         printf("Inset the element in queue : ");
 
         scanf("%d", &add_item);
 
-        rear = rear + 1;
+        tail = tail + 1;
 
-        queue_array[rear] = add_item;
+        queue_array[tail] = add_item;
 
     }
 
@@ -118,7 +116,7 @@ void delete()
 
 {
 
-    if (front == - 1 || front > rear)
+    if (head == - 1 || head > tail)
 
     {
 
@@ -132,9 +130,9 @@ void delete()
 
     {
 
-        printf("Element deleted from queue is : %d\n", queue_array[front]);
+        printf("Element deleted from queue is : %d\n", queue_array[head]);
 
-        front = front + 1;
+        head = head + 1;
 
     }
 
@@ -148,7 +146,7 @@ void display()
 
     int i;
 
-    if (front == - 1)
+    if (head == - 1)
 
         printf("Queue is empty \n");
 
@@ -158,7 +156,7 @@ void display()
 
         printf("Queue is : \n");
 
-        for (i = front; i <= rear; i++)
+        for (i = head; i <= tail; i++)
 
             printf("%d ", queue_array[i]);
 

@@ -1,20 +1,18 @@
 #include <stdio.h>
 #include<stdlib.h>
 
+#define MAX 50  //defining maximum size of queue
  
 
-#define MAX 50
- 
-
-void insert();
+void insert(); //prototype
 
 void delete();
 
 void display();
 
-int queue_array[MAX];
+int queue_array[MAX];  //array for queue
 
-int tail = - 1;
+int tail = - 1;  //setting initail value of tail and queue to -1 saying that queue is empty
 
 int head = - 1;
 
@@ -22,9 +20,9 @@ main()
 
 {
 
-    int choice;
+    int choice;   
 
-    while (1)
+    while (1)    //infinite while loop
 
     {
 
@@ -36,11 +34,11 @@ main()
 
         printf("4.Quit \n");
 
-        printf("Enter your choice : ");
+        printf("Enter your choice : ");  //entering choice by user
 
         scanf("%d", &choice);
 
-        switch (choice)
+        switch (choice)  //switch case statement for calling different functioins
 
         {
 
@@ -78,13 +76,13 @@ main()
 
  
 
-void insert()
+void insert()  //funcion for inseerting an element to queue
 
 {
 
     int add_item;
 
-    if (tail == MAX - 1)
+    if (tail == MAX - 1) //checking if the queue is full
 
     printf("Queue Overflow \n");
 
@@ -92,19 +90,19 @@ void insert()
 
     {
 
-        if (head == - 1)
+        if (head == - 1)   
 
         /*If queue is initially empty */
 
-        head = 0;
+        head = 0; //setting position of head to zero
 
         printf("Inset the element in queue : ");
 
-        scanf("%d", &add_item);
+        scanf("%d", &add_item); //adding element to queue
 
-        tail = tail + 1;
+        tail = tail + 1; //changing the posistion to tail
 
-        queue_array[tail] = add_item;
+        queue_array[tail] = add_item;  //adding element to tail
 
     }
 
@@ -116,7 +114,7 @@ void delete()
 
 {
 
-    if (head == - 1 || head > tail)
+    if (head == - 1 ) //checking if queue is empty
 
     {
 
@@ -132,13 +130,13 @@ void delete()
 
         printf("Element deleted from queue is : %d\n", queue_array[head]);
 
-        head = head + 1;
+        head = head + 1; //deleting and changing the posistion of head to next element
 
     }
 
 } /* End of delete() */
 
- 
+ /*displaying queue */
 
 void display()
 
@@ -146,7 +144,7 @@ void display()
 
     int i;
 
-    if (head == - 1)
+    if (head == - 1) //checking if queue is empty 
 
         printf("Queue is empty \n");
 
@@ -154,7 +152,7 @@ void display()
 
     {
 
-        printf("Queue is : \n");
+        printf("Queue is : \n"); //displaying the queue elements
 
         for (i = head; i <= tail; i++)
 

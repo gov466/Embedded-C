@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include<conio.h>
 //sructure declaration
-#define MAX 5
-void enqueue();
+#define MAX 5       //defining size as 5
+void enqueue();     //prototype
 void dequeue();
 void display();
 

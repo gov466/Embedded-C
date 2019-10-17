@@ -1,18 +1,20 @@
+ /*C Program to Implement a Queue using an Array*/
+
 #include <stdio.h>
 #include<stdlib.h>
 
-#define MAX 50  //defining maximum size of queue
+#define MAX 50 //defining maximum size
  
 
-void insert(); //prototype
+void enqueue(); //function prototype
 
-void delete();
+void dequeue();
 
 void display();
 
-int queue_array[MAX];  //array for queue
+int queue_array[MAX]; //array for queue
 
-int tail = - 1;  //setting initail value of tail and queue to -1 saying that queue is empty
+int tail = - 1;  //setting initial queue as empty
 
 int head = - 1;
 
@@ -20,9 +22,9 @@ main()
 
 {
 
-    int choice;   
+    int choice;
 
-    while (1)    //infinite while loop
+    while (1)     //infinite loop
 
     {
 
@@ -34,29 +36,29 @@ main()
 
         printf("4.Quit \n");
 
-        printf("Enter your choice : ");  //entering choice by user
+        printf("Enter your choice : ");
 
         scanf("%d", &choice);
 
-        switch (choice)  //switch case statement for calling different functioins
+        switch (choice)   //switch case statement for different functions
 
         {
 
             case 1:
 
-            insert();
+            enqueue();  //calling function for inserting element
 
             break;
 
             case 2:
 
-            delete();
+            dequeue();  //calling function for deleting element
 
             break;
 
             case 3:
 
-            display();
+            display();  //calling function for display
 
             break;
 
@@ -75,14 +77,14 @@ main()
 } /* End of main() */
 
  
-
-void insert()  //funcion for inseerting an element to queue
+//fucntion for inserting element
+void enqueue()
 
 {
 
-    int add_item;
+    int add_item;  //variable to storte element
 
-    if (tail == MAX - 1) //checking if the queue is full
+    if (tail == MAX - 1) //checking if queue is full
 
     printf("Queue Overflow \n");
 
@@ -90,31 +92,31 @@ void insert()  //funcion for inseerting an element to queue
 
     {
 
-        if (head == - 1)   
+        if (head == - 1)  
 
         /*If queue is initially empty */
 
-        head = 0; //setting position of head to zero
+        head = 0;
 
-        printf("Inset the element in queue : ");
+        printf("Inset the element in queue : "); //inserting element
 
-        scanf("%d", &add_item); //adding element to queue
+        scanf("%d", &add_item);
 
-        tail = tail + 1; //changing the posistion to tail
+        tail = tail + 1;    //incrementing the posistion of tail 
 
-        queue_array[tail] = add_item;  //adding element to tail
+        queue_array[tail] = add_item; //adding the next number 
 
     }
 
 } /* End of insert() */
 
  
-
-void delete()
+//deleting the element
+void dequeue()
 
 {
 
-    if (head == - 1 ) //checking if queue is empty
+    if (head == - 1)// || head > tail) // checking if queue is empty
 
     {
 
@@ -130,21 +132,21 @@ void delete()
 
         printf("Element deleted from queue is : %d\n", queue_array[head]);
 
-        head = head + 1; //deleting and changing the posistion of head to next element
+        head = head + 1; //deleting the element by increasing the head posistion 
 
     }
 
 } /* End of delete() */
 
- /*displaying queue */
-
+ 
+//function for display
 void display()
 
 {
 
     int i;
 
-    if (head == - 1) //checking if queue is empty 
+    if (head == - 1) //checking if queue is empty
 
         printf("Queue is empty \n");
 
@@ -152,7 +154,7 @@ void display()
 
     {
 
-        printf("Queue is : \n"); //displaying the queue elements
+        printf("Queue is : \n");  //displaying the queue elements
 
         for (i = head; i <= tail; i++)
 

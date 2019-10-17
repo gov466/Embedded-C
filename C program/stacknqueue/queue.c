@@ -1,8 +1,4 @@
-/*
-
- * C Program to Implement a Queue using an Array
-
- */
+/* C Program to Implement a Queue using an Array */
 
 #include <stdio.h>
 

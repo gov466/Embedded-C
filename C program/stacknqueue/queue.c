@@ -4,19 +4,19 @@
 
  
 
-#define MAX 50
+#define MAX 50  //defining maximum size of array
 
  
 
-void insert();
+void insert();    //prototype
 
 void delete();
 
 void display();
 
-int queue_array[MAX];
+int queue_array[MAX];   //array for elements in queue
 
-int rear = - 1;
+int rear = - 1;    //setting initial value of rear and front as -1 meant that queue is empty
 
 int front = - 1;
 

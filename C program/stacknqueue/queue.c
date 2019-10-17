@@ -116,7 +116,7 @@ void dequeue()
 
 {
 
-    if (head == - 1)// || head > tail) // checking if queue is empty
+    if (head == - 1) // checking if queue is empty
 
     {
 

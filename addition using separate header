@@ -1,3 +1,4 @@
+/*addition using separate header file*/
 //main .cpp
 
 #include <iostream>

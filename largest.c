@@ -1,4 +1,4 @@
-//Program to find the largest number in array
+/*Program to find the largest number in array*/
 #include <stdio.h>
 #include <stdlib.h>
 

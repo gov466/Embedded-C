@@ -4,7 +4,7 @@
  */
 
 /*
- * standard includes
+ * standard includes */
 	#include <stdio.h>
 	#include <stdlib.h>
 

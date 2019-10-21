@@ -5,7 +5,6 @@
 
 /*
  * standard includes
- */
 	#include <stdio.h>
 	#include <stdlib.h>
 
@@ -65,11 +64,15 @@ gsl_matrix *embt_mm(const gsl_matrix *U, const gsl_matrix *V, size_t N)
 	return W;
 }
 
-/*gsl_print_vector()
+gsl_vector gsl_print_vector(const gsl_vector V, size_t N)
 {
-	
-}*/
-embt_print_matrix(const gsl_matrix *V, size_t N)
+	  /* Print the vector*/
+	   for (size_t i = 0; i < N; i++)
+	   {
+	       printf ("v_%d = %g\n", i, gsl_vector_get (V, i));
+	   }
+}
+gsl_matrix embt_print_matrix(const gsl_matrix V, size_t N)
 {
 	printf("Matrix m\n");
 	  for (size_t i=0;i!=N;i++)
@@ -158,12 +161,12 @@ int main()
 
 
 		/* print the results */
-		/*embt_print_vector(a);
-		embt_print_vector(b);
-		embt_print_vector(c); */
-		embt_print_matrix(A);
-		embt_print_matrix(B);
-		embt_print_matrix(C);
+		embt_print_vector(a,N);
+		embt_print_vector(b,N);
+		embt_print_vector(c,N);
+		embt_print_matrix(A,N);
+		embt_print_matrix(B,N);
+		embt_print_matrix(C,N);
 
 
 
@@ -176,3 +179,4 @@ int main()
 	gsl_matrix_free(C);
 	return EXIT_SUCCESS;
 }
+

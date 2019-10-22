@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include<conio.h>
 #include<stdlib.h>
@@ -12,26 +13,36 @@ struct queue
     int rear;   //holds value of rear position
     int que[MAX];
 }q;
+//main function starts
 int main()
 {
     int choice;
-    q.rear=-1;
+    q.rear=-1;  //setting initial value as empty
     q.front=-1;
       
 
     while (1)     //infinite loop
 
     {
+         printf("==============================================");
+ 
+         printf("\n\n****IMPLEMENTATION OF QUEUE USING POINTERS****\n");
+ 
+         printf("==============================================");
+ 
+                    printf("\n\t\t  MENU\n");
+ 
+         printf("==============================================");
+   
+        printf("\n\t1.Insert element to queue \n");
 
-        printf("1.Insert element to queue \n");
+        printf("\t2.Delete element from queue \n");
 
-        printf("2.Delete element from queue \n");
+        printf("\t3.Display all elements of queue \n");
 
-        printf("3.Display all elements of queue \n");
+        printf("\t4.Quit \n");
 
-        printf("4.Quit \n");
-
-        printf("Enter your choice : ");
+        printf("\tEnter your choice : ");
 
         scanf("%d", &choice);
 
@@ -70,30 +81,30 @@ int main()
     } /* End of while */
 
 } /* End of main() */
-
+/*adding elements to queue */
 void enqueue()
 {
- if(q.rear==MAX-1)
+ if(q.rear==MAX-1)  //checking if queue is full
  {
      printf("\n\n\t queue overflow...");
      
  }
- else
+ else   //if queue is not full
  {
    int item;
-   printf("\n\n\t Enter the data item");
+   printf("\n\n\t Enter the data item :");  //adding atem to queue
    scanf("%d",&item);
    
    if(q.rear==-1 && q.front==-1)
    {
-       q.rear++;
+       q.rear++;    //pointing front and rear values to 0th posisition in queue
        q.front++;
-       q.que[q.rear]=item;
+       q.que[q.rear]=item;  //setting the first element in queue
    }
    else
    {
-       q.rear++;
-       q.que[q.rear]=item;
+       q.rear++;    //if already elements are present the increment the rear
+       q.que[q.rear]=item;  //add elements to next posistion
    }
  }
 }

@@ -108,27 +108,27 @@ void enqueue()
    }
  }
 }
-
+/* removing element from queue*/
 void dequeue()
 {
  int item;
- if(q.front==-1)
+ if(q.front==-1)    //checking if queue is empty
  {
      printf("\n\n\t queue underflow..");
      
  }
  else
  {
-     item=q.que[q.front];
+     item=q.que[q.front];   //if queue is not empty taking the first inserted element
      printf("\n\n\t The deleted elemnt =%d",item);
-     if(q.front==q.rear)
+     if(q.front==q.rear)    //
      {
          q.front=-1;
          q.rear=-1;
      }
      else
      {
-         q.front++;
+         q.front++; //if elemnt is removed changing the posistion of front 
      }
      
  }

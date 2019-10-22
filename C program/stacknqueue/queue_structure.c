@@ -133,17 +133,18 @@ void dequeue()
      
  }
 }
+/*displaying element in queue*/
 void display()
 {
     int i;
-    if(q.front == -1)
+    if(q.front == -1)   //checking if queue is empty
     {
         printf("\n\n\t the queue is empty");
     }
 
-    else
+    else    
     {
-        printf("\n\n\t the elements in the queue are as follows");
+        printf("\n\n\t the elements in the queue are as follows"); //if queue is not empty the display the elements
         for(i=q.front;i<=q.rear;i++)
         {
             printf("\n %d\n",q.que[i]);

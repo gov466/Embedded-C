@@ -9,44 +9,44 @@ void dequeue();
 //q structure hold all variables
 struct queue
 {
-    int front;  //holds value of front position
-    int rear;   //holds value of rear position
-    int que[MAX];
+    int head;  //holds value of front position
+    int tail;   //holds value of rear position
+    int arr[MAX];
 }q;
 //main function starts
 int main()
 {
-    int choice;
-    q.rear=-1;  //setting initial value as empty
-    q.front=-1;
+    int ch;
+    q.tail=-1;  //setting initial value as empty
+    q.head=-1;
       
 
     while (1)     //infinite loop
 
     {
-         printf("==============================================");
+         printf("\t##############################################");
  
-         printf("\n\n****IMPLEMENTATION OF QUEUE USING POINTERS****\n");
+         printf("\t\n\n\t $$$$ QUEUE IMPLEMENTATION USING POINTERS $$$$\n");
  
-         printf("==============================================");
+         printf("\t----------------------------------------------");
  
-                    printf("\n\t\t  MENU\n");
+                    printf("\n\t\t\t LIST \t\t\n");
  
-         printf("==============================================");
+         printf("\t##############################################");
    
-        printf("\n\t1.Insert element to queue \n");
+        printf("\n\t\t1.Insert element  \n");
 
-        printf("\t2.Delete element from queue \n");
+        printf("\t\t2.Delete element  \n");
 
-        printf("\t3.Display all elements of queue \n");
+        printf("\t\t3.Display elements \n");
 
-        printf("\t4.Quit \n");
+        printf("\t\t4.End \n");
 
-        printf("\tEnter your choice : ");
+        printf("\t\tEnter any of number above : ");
 
-        scanf("%d", &choice);
+        scanf("%d", &ch);
 
-        switch (choice)   //switch case statement for different functions
+        switch (ch)   //switch case statement for different functions
 
         {
 
@@ -74,7 +74,7 @@ int main()
 
             default:
 
-            printf("Wrong choice \n");
+            printf("Wrong number \n");
 
         } /* End of switch */
 
@@ -84,51 +84,51 @@ int main()
 /*adding elements to queue */
 void enqueue()
 {
- if(q.rear==MAX-1)  //checking if queue is full
+ if(q.tail==MAX-1)  //checking if queue is full
  {
-     printf("\n\n\t queue overflow...");
+     printf("\n\n\t queue is full...");
      
  }
  else   //if queue is not full
  {
-   int item;
-   printf("\n\n\t Enter the data item :");  //adding atem to queue
-   scanf("%d",&item);
+   int data;
+   printf("\n\n\t Enter the element :");  //adding atem to queue
+   scanf("%d",&data);
    
-   if(q.rear==-1 && q.front==-1)
+   if(q.tail==-1 && q.head==-1)
    {
-       q.rear++;    //pointing front and rear values to 0th posisition in queue
-       q.front++;
-       q.que[q.rear]=item;  //setting the first element in queue
+       q.tail++;    //pointing front and rear values to 0th posisition in queue
+       q.head++;
+       q.arr[q.tail]=data;  //setting the first element in queue
    }
    else
    {
-       q.rear++;    //if already elements are present the increment the rear
-       q.que[q.rear]=item;  //add elements to next posistion
+       q.tail++;    //if already elements are present the increment the rear
+       q.arr[q.tail]=data;  //add elements to next posistion
    }
  }
 }
 /* removing element from queue*/
 void dequeue()
 {
- int item;
- if(q.front==-1)    //checking if queue is empty
+ int data;
+ if(q.head==-1)    //checking if queue is empty
  {
-     printf("\n\n\t queue underflow..");
+     printf("\n\n\t queue is empty..");
      
  }
  else
  {
-     item=q.que[q.front];   //if queue is not empty taking the first inserted element
-     printf("\n\n\t The deleted elemnt =%d",item);
-     if(q.front==q.rear)    //
+     data=q.arr[q.head];   //if queue is not empty taking the first inserted element
+     printf("\n\n\t Element deleted from queue is =%d\n",data);
+     if(q.head==q.tail)    //
      {
-         q.front=-1;
-         q.rear=-1;
+         q.head=-1;
+         q.tail=-1;
      }
      else
      {
-         q.front++; //if elemnt is removed changing the posistion of front 
+         q.head++; //if elemnt is removed changing the posistion of front 
      }
      
  }
@@ -137,18 +137,19 @@ void dequeue()
 void display()
 {
     int i;
-    if(q.front == -1)   //checking if queue is empty
+    if(q.head == -1)   //checking if queue is empty
     {
         printf("\n\n\t the queue is empty");
     }
 
     else    
     {
-        printf("\n\n\t the elements in the queue are as follows"); //if queue is not empty the display the elements
-        for(i=q.front;i<=q.rear;i++)
+        printf("\n\n\t The queue elements are: "); //if queue is not empty the display the elements
+        for(i=q.head;i<=q.tail;i++)
         {
-            printf("\n %d\n",q.que[i]);
+            printf("\n %d\n",q.arr[i]);
         }
     }
     
 }
+

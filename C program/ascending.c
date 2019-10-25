@@ -1,4 +1,4 @@
-// Example program to sort array inascending order
+/* Example program to sort array in ascending order */
 #include <iostream>
 #include <string>
 using namespace std;
@@ -15,7 +15,7 @@ int main()
          for(j=i+1;j<5;j++)
          {
              
-             if(a[j]<a[i])
+             if(a[j]<a[i]) //comparing first and second values in array
               {
              temp=a[i];
              a[i]=a[j];

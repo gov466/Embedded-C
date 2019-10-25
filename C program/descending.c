@@ -17,7 +17,7 @@ int main()
              
              if(a[j]>a[i]) //checking first and second element in array
               {
-             temp=a[i];
+             temp=a[i]; //interchanging if first elemnt is smaller
              a[i]=a[j];
              a[j]=temp;
               }

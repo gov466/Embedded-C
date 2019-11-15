@@ -32,7 +32,7 @@ node* Insert(node* rootPtr, int data)   //function for inserting new node
     }
     return rootPtr;
 }
-int Search(struct BstNode* rootPtr, int data)
+int Search(struct BstNode* rootPtr, int data) //function for dearching if elemnt is present in node or not
 {
     if(rootPtr == NULL) 
     {
@@ -40,9 +40,9 @@ int Search(struct BstNode* rootPtr, int data)
     }
     else if(rootPtr->data == data)
     {
-    return 1;
+    return 1;   //return 1 if data found
     }
-    else if(data <= rootPtr->data) 
+    else if(data <= rootPtr->data) //checking whether we want to search on left or right direction
     {
     return Search(rootPtr->left, data);
     }
@@ -51,8 +51,8 @@ int Search(struct BstNode* rootPtr, int data)
     }
 }
 int main(void){
-node* rootPtr;
-rootPtr = NULL;
+node* rootPtr;  //structure variable for accessing structure
+rootPtr = NULL; //initially declaring root as null
 rootPtr = Insert(rootPtr, 15);
 rootPtr = Insert(rootPtr, 10);
 rootPtr = Insert(rootPtr, 20);

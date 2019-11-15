@@ -62,8 +62,8 @@ rootPtr = Insert(rootPtr, 25);
 int n;
 printf("Enter number to be searched: \n");
 scanf("%d",&n);
-if(Search(rootPtr, n) == 1) {
-printf("Found\n");
+if(Search(rootPtr, n) == 1) {   //calling search  function
+printf("Found\n");  
 }
 else {
 printf("Not Found\n");

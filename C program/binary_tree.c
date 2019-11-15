@@ -16,7 +16,7 @@ node* GetNewNode(int data)  //function for creating root node
         return newNode;
 
 }
-node* Insert(node* rootPtr, int data)
+node* Insert(node* rootPtr, int data)   //function for inserting new node
 {
     if(rootPtr == NULL)
     {

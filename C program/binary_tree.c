@@ -1,13 +1,14 @@
+//program to create a binary tree in c
 #include <stdio.h>
 #include <stdlib.h>
 
-struct BstNode {
+struct BstNode {        //structure
     int data;
     struct BstNode* left;
     struct BstNode* right;
 };
 typedef struct BstNode node;
-node* GetNewNode(int data)
+node* GetNewNode(int data)  //function for creating root node
     {
         node* newNode = (node*)malloc(sizeof(node));
         newNode->data = data;

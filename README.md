@@ -31,7 +31,24 @@ What makes your project stand out?
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
 ## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
+
+Install Eclipse Oxygen IDE on Ubuntu 16.04 through terminal in ubuntu
+Step 1: Install Java JDK8
+Run the commands below
+  sudo add-apt-repository ppa:webupd8team/java
+After running the commands above, you should see a prompt to accept the PPA key onto Ubuntu… accept and continue
+Now that the PPA repository has been added to Ubuntu, run the commands below to download Oracle Java 9 installer…. the installer should install the latest Java JDK 9 on your Ubuntu machines.
+  sudo apt update
+  sudo apt install oracle-java8-installer
+When you run the commands above you’ll be prompted to access the license terms of the software… accept and continue..
+https://websiteforstudents.com/wp-content/uploads/2018/03/oracle_java_9.png
+  sudo apt install oracle-java8-set-default
+The command above will automatically set Java 9 as the default… and that should complete your installation, you can check you java version by running following command.
+
+javac -version
+
+
+
 
 ## API Reference
 (https://www.cprogramming.com/tutorial/c-tutorial.html?inl=pf)

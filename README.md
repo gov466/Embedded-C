@@ -1,8 +1,8 @@
-## Project title
-A little info about your project and/ or overview that explains **what** the project is about.
+## Embedded C programming
+C is a programming language designed by Dennis Ritchie at Bell Labs. C is very widely used, straightforward, and can be compiled to a number of platforms and operating systems. C is an imperative language, with a small number of keywords and a large number of mathematical operators. I included programming libraries,guides etc..
 
 ## Motivation
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+These program are meant for helping others who want to learn c programming from basics and also help them understand certain coding techniques and ideas.
 
 ## Build status
 Build status of continus integration i.e. travis, appveyor etc. Ex. - 

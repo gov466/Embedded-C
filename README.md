@@ -38,11 +38,14 @@ Step 1: Install Java JDK8
 Run the commands below
   sudo add-apt-repository ppa:webupd8team/java
 After running the commands above, you should see a prompt to accept the PPA key onto Ubuntu… accept and continue
+
+![](images/screenshot.png)
+
 Now that the PPA repository has been added to Ubuntu, run the commands below to download Oracle Java 9 installer…. the installer should install the latest Java JDK 9 on your Ubuntu machines.
   sudo apt update
   sudo apt install oracle-java8-installer
 When you run the commands above you’ll be prompted to access the license terms of the software… accept and continue..
-![](images/screenshot.png)
+
   sudo apt install oracle-java8-set-default
 The command above will automatically set Java 9 as the default… and that should complete your installation, you can check you java version by running following command.
 

@@ -39,7 +39,7 @@ Run the commands below
   sudo add-apt-repository ppa:webupd8team/java
 After running the commands above, you should see a prompt to accept the PPA key onto Ubuntu… accept and continue
 
-![](images/screenshot.png)
+![](images/Screenshot.png)
 
 Now that the PPA repository has been added to Ubuntu, run the commands below to download Oracle Java 9 installer…. the installer should install the latest Java JDK 9 on your Ubuntu machines.
   sudo apt update

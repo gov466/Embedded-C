@@ -41,7 +41,7 @@ Now that the PPA repository has been added to Ubuntu, run the commands below to 
   sudo apt update
   sudo apt install oracle-java8-installer
 When you run the commands above you’ll be prompted to access the license terms of the software… accept and continue..
-https://websiteforstudents.com/wp-content/uploads/2018/03/oracle_java_9.png
+<img src ="image/screenshot.png">
   sudo apt install oracle-java8-set-default
 The command above will automatically set Java 9 as the default… and that should complete your installation, you can check you java version by running following command.
 

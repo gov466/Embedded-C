@@ -5,9 +5,6 @@ C is a programming language designed by Dennis Ritchie at Bell Labs. C is very w
 
 ## Motivation
 These program are meant for helping others who want to learn c programming from basics and also help them understand certain coding techniques and ideas.
- 
-## Screenshots
-
 
 ## Features
 When you are born, you need some language to communicate. For most of us, it is our mother tongue.

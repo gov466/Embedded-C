@@ -62,8 +62,40 @@ From the link below download eclipse Oxygen IDE package for your system..
 
 https://www.eclipse.org/downloads/
 
+![](images/Screenshot1.png)
 
+Extract the downloaded package to the /opt directory using the commands below… by default Eclipse package should be downloaded into the ~/Downloads folder of your home directory…
 
+Step 3: Install Eclipse IDE
+
+Use the commands below to extract the content in the  ~/Downloads folder… The next line launches the installer…
+
+> tar xfz ~/Downloads/eclipse-inst-linux64.tar.gz
+> ~/Downloads/eclipse-installer/eclipse-inst
+
+Select the package IDE you want to install and continue…
+
+![](images/Screenshot2.png)
+
+Use the onscreen instructions to complete the installer.. Accept the default installation directory and continue
+
+![](images/Screenshot3.png)
+
+Next, accept the license terms and continue… wait for Eclipse installer to download and install all the packages..
+
+![](images/Screenshot4.png)
+
+After downloading the installer should complete… all you have to do is launch the program…
+
+![](images/Screenshot5.png)
+
+Step 3: Create Eclipse App Launcher
+
+Run the command below
+
+>nano .local/share/applications/eclipse.desktop
+
+Next, copy and paste the content below into the file and save
 
 ## API Reference
 (https://www.cprogramming.com/tutorial/c-tutorial.html?inl=pf)

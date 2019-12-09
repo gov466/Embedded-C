@@ -117,9 +117,6 @@ You should then have a launcher for Eclipse JEE Oxygen… open Dash or the activ
 ## API Reference
 (https://www.cprogramming.com/tutorial/c-tutorial.html?inl=pf)
 
-## Tests
-Describe and show how to run the tests with code examples.
-
 ## License
 
 MIT © [Govind raj]()

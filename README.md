@@ -79,15 +79,15 @@ Select the package IDE you want to install and continue…
 
 Use the onscreen instructions to complete the installer.. Accept the default installation directory and continue
 
-![](images/Screenshot3.png)
+![](images/Screenshot4.png)
 
 Next, accept the license terms and continue… wait for Eclipse installer to download and install all the packages..
 
-![](images/Screenshot4.png)
+![](images/Screenshot5.png)
 
 After downloading the installer should complete… all you have to do is launch the program…
 
-![](images/Screenshot5.png)
+![](images/Screenshot6.png)
 
 Step 3: Create Eclipse App Launcher
 
@@ -96,6 +96,32 @@ Run the command below
 >nano .local/share/applications/eclipse.desktop
 
 Next, copy and paste the content below into the file and save
+
+>[Desktop Entry]
+
+>Name=Eclipse JEE Oxygen
+
+>Type=Application
+
+>Exec=/home/#govind/eclipse/jee-oxygen/eclipse/eclipse
+
+>Terminal=false
+
+>Icon=/home/#govind/eclipse/jee-oxygen/eclipse/icon.xpm
+
+>Comment=Integrated Development Environment
+
+>NoDisplay=false
+
+>Categories=Development;IDE;
+
+>Name[en]=Eclipse
+
+Replace the highlighted username (govind) with your own account name… also, the Exec = location and icon.xpm should depend on where Eclipse got installed on your system..
+
+Save the file and exit…
+
+You should then have a launcher for Eclipse JEE Oxygen… open Dash or the activities overview and search for Eclipse… then launch.
 
 ## API Reference
 (https://www.cprogramming.com/tutorial/c-tutorial.html?inl=pf)

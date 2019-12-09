@@ -7,7 +7,7 @@ C is a programming language designed by Dennis Ritchie at Bell Labs. C is very w
 These program are meant for helping others who want to learn c programming from basics and also help them understand certain coding techniques and ideas.
  
 ## Screenshots
-![](images/giphy.gif)
+
 
 ## Features
 When you are born, you need some language to communicate. For most of us, it is our mother tongue.
@@ -15,7 +15,14 @@ When you are born, you need some language to communicate. For most of us, it is 
 So if you want to become a programmer, you need some language to communicate with computers. In programming world, you start with C and C++ which can be referred as mother tongue of programming.
 
 ## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+
+C program example:
+
+![](images/giphy.gif)
+
+C++ program example:
+
+![](images/program.gif)
 
 ## Installation
 

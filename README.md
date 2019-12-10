@@ -19,7 +19,7 @@ C program example:
 
 C++ program example:
 
-![](images/program.gif)
+![](images/c++.gif)
 
 ## Installation
 

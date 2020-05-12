@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int main() {
+  float a,b,result;
+  char action;
+  cout<<"\n\n";
+cout<<"\t\tSimple Calculator\n";
+//cout<<"enter first number: ";
+cin>>a>>action>>b;;
+//cout<<"enter second number:";
+//cin>>action;
+//cin
+//cout<<"enter action";
+
+if(action=='+')
+{
+  cout<<" = "<<a+b<<endl;
+}
+if(action=='-')
+{
+  cout<<"= "<<a-b<<endl;
+}
+if(action=='*')
+{
+  cout<<"= "<<a*b<<endl;
+}
+if(action=='/')
+{
+  cout<<"= "<<a/b<<endl;
+}
+}

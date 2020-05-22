@@ -23,7 +23,7 @@ void* threadFunction(void *value)
 		usleep(1000);         //sleep for 1ms - encourage main thread
 		(*x)++;               //increment the value of x by 1
 	}
-	return x;                 //return the pointer x (as a void*)
+	return x;                  //return the pointer x (as a void*)
 }
 
 int main()

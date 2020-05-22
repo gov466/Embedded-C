@@ -34,7 +34,7 @@ int main()
 	// pthread_create() returns 0 on the successful creation of a thread
 	if (pthread_create(&thread, NULL, &threadFunction, &x) != 0)
 	{
-		printf("Failed to create the thread\n");
+		printf("Failed to create the thread::\n");
 		return 1;
 	}
 	// at this point the thread was created successfully

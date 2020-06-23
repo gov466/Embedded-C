@@ -63,7 +63,16 @@ size_t countLiveNeighbours(size_t row, size_t col)
 	size_t cell_count = 0;
 
 	// your code goes here
+	for (size_t i = row-1; i <= row+1; i++)
+	{
+		for (int size_t j = col-1; j <= col+1; j++)
+		{
+			 cell_count += update_env[i][j];
+		}
+	}
+	cell_count - =update_env[row][col];
 
+  //should be edited
 	return cell_count;
 }
 

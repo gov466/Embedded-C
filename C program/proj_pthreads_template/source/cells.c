@@ -67,10 +67,10 @@ size_t countLiveNeighbours(size_t row, size_t col)
 	{
 		for (int size_t j = col-1; j <= col+1; j++)
 		{
-			 cell_count += update_env[i][j];
+			 cell_count += env[i][j];
 		}
 	}
-	cell_count - =update_env[row][col];
+	cell_count - =env[i][j];
 
   //should be edited
 	return cell_count;
@@ -99,6 +99,36 @@ void updateCell(size_t r, size_t c)
 	size_t live_neighbours = countLiveNeighbours(r, c);
 
 	// your code goes here
+	for (int i = 1; i < r - 1; i++)
+	{
+		for (int j = 1; j < c - 1; j++)
+		{
+			if ((env[i][j] == 1) && (live_neighbours < 2))
+				{
+					update_env[i][j] = 0;
+				}
+					 // Cell dies due to over population
+				else if ((env[i][j] == 1) && (live_neighbours > 3))
+				{
+					update_env[i][j] = 0;
+				}
+				// A new cell is born
+				else if ((env[i][j] == 0) && (live_neighbours == 3))
+				{
+					update_env[i][j] = 1;
+				}
+				// Remains the same
+				else
+				{
+					update_env[i][j] = env[i][j];
+				}
+
+		}
+
+	}
+
+
+
 }
 
 /*
@@ -162,6 +192,7 @@ void copyEnvironment(void)
  */
 void* updateCommFunc(void *param)
 {
+
 
 	// your code goes here
 }

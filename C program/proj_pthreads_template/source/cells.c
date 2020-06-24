@@ -63,17 +63,26 @@ size_t countLiveNeighbours(size_t row, size_t col)
 	size_t cell_count = 0;
 
 	// your code goes here
-	for (size_t i = row-1; i <= row+1; i++)
+	//size_t r_idx, c_idx, neigCount;
+	size_t startPosR = (row - 1 < 0) ? row : row-1;
+	size_t startPosC = (col - 1 < 0) ? col : col-1;
+	size_t endPosR =   (row + 1 > config_NE) ? row : row+1;
+	size_t endPosC =   (col + 1 > config_ME) ? col : col+1;
+	    // checks neighbouring cells
+	for (int i = startPosR; i <= endPosR; i++)
 	{
-		for (int size_t j = col-1; j <= col+1; j++)
+		for (int j = startPosC; j <= endPosC; j++)
 		{
-			 cell_count += env[i][j];
-		}
-	}
-	cell_count - =env[i][j];
+			//checks if the cell is alive, if alive increments the count
+	        if(env[i][j])
+	        {
+	        	 cell_count++;
+	        }
 
-  //should be edited
-	return cell_count;
+	    }
+	}
+
+		return cell_count;
 }
 
 /*

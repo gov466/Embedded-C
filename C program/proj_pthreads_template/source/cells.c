@@ -192,7 +192,14 @@ void copyEnvironment(void)
  */
 void* updateCommFunc(void *param)
 {
-
-
 	// your code goes here
+	for(size_t i = 0; i<config_NC; i++)
+	{
+		size_t row =param.row + i;
+		for(size_t j=0; j< config_MC; j++)
+		{
+			size_t col = param.col+j;
+			update(row,col);
+		}
+	}
 }

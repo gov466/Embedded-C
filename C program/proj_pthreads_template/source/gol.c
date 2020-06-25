@@ -11,9 +11,9 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <ncurses.h>
-#include "gol_config.h"
-#include "cells.h"
-#include "display.h"
+#include "../includes/gol_config.h"
+#include "../includes/cells.h"
+#include "../includes/display.h"
 
 /*
  * global variables

@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "gol_config.h"
-#include "cells.h"
+#include "../includes/gol_config.h"
+#include "../includes/cells.h"
 
 /*
  * declare important variables (defined in main file as global variables)
@@ -208,7 +208,7 @@ void* updateCommFunc(void *param)
 		for(size_t j=0; j< config_MC; j++)
 		{
 			size_t col = param.col+j;
-			update(row,col);
+			updateCell(row,col);
 		}
 	}
 }

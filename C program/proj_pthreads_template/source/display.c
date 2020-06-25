@@ -7,10 +7,10 @@
  *      by Pradeep Padala
  */
 
-#include "gol_config.h"
+#include "../includes/gol_config.h"
 #include <unistd.h>
 #include <ncurses.h>
-#include "display.h"
+#include "../includes/display.h"
 
 /*
  * important variables, defined elsewhere

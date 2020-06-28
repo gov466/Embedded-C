@@ -201,14 +201,22 @@ void copyEnvironment(void)
  */
 void* updateCommFunc(void *param)
 {
+	//printf("line one");
+	threadID_t index = *((threadID_t*)param);
 	// your code goes here
-	for(size_t i = 0; i<config_NC; i++)
-	{
-		size_t row =param.row + i;
-		for(size_t j=0; j< config_MC; j++)
+	//printf("line two");
+	for(size_t i = 0; i < config_NC; i++)
+    {
+		//printf("line three");
+		size_t row = index.row + i;
+	    for(size_t j = 0; j < config_MC; j++)
 		{
-			size_t col = param.col+j;
-			updateCell(row,col);
+	    	//printf("line four");
+			size_t col = index.col + j;
+	    	//printf("line five");
+            updateCell(row, col);
 		}
 	}
+	free(param);
+
 }

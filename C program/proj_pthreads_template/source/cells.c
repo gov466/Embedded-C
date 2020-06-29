@@ -104,13 +104,14 @@ size_t countLiveNeighbours(size_t row, size_t col)
  */
 void updateCell(size_t r, size_t c)
 {
-	cell_t state_cell = env[r][c];
+	//cell_t state_cell = env[r][c];
+	cell_t  env[r][c];
 	size_t live_neighbours = countLiveNeighbours(r, c);
 
 	// your code goes here
-	for (int i = 1; i < r - 1; i++)
+	for (int i = 0; i < config_NC; i++)
 	{
-		for (int j = 1; j < c - 1; j++)
+		for (int j = 0; j < config_MC; j++)
 		{
 			if ((env[i][j] == 1) && (live_neighbours < 2))
 				{
@@ -199,24 +200,29 @@ void copyEnvironment(void)
 /*
  * this function updates all the cells for a thread (corresponding to one community)
  */
+
 void* updateCommFunc(void *param)
 {
-	//printf("line one");
+	//printf("line one \n");
 	threadID_t index = *((threadID_t*)param);
 	// your code goes here
-	//printf("line two");
+	//printf("line two\n");
+	while(1)
+	{
 	for(size_t i = 0; i < config_NC; i++)
     {
-		//printf("line three");
+		//printf("line three\n");
 		size_t row = index.row + i;
 	    for(size_t j = 0; j < config_MC; j++)
 		{
-	    	//printf("line four");
+	    	//printf("line four\n");
 			size_t col = index.col + j;
-	    	//printf("line five");
+	    	//printf("line five \n");
             updateCell(row, col);
+            //printf("line six \n");
 		}
 	}
-	free(param);
+	}
+	//free(param);
 
 }

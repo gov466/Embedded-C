@@ -104,38 +104,40 @@ size_t countLiveNeighbours(size_t row, size_t col)
  */
 void updateCell(size_t r, size_t c)
 {
-	//cell_t state_cell = env[r][c];
-	cell_t  env[r][c];
+	cell_t state_cell = env[r][c];
+	//cell_t  env[r][c];
 	size_t live_neighbours = countLiveNeighbours(r, c);
-
+	//printf('live_n=%d \n',live_neighbours );
 	// your code goes here
-	for (int i = 0; i < config_NC; i++)
-	{
-		for (int j = 0; j < config_MC; j++)
-		{
-			if ((env[i][j] == 1) && (live_neighbours < 2))
+	//for (int i = 0; i < config_NE; i++)
+	//{
+		//int k = i+r ;
+		//for (int j = 0; j < config_ME; j++)
+		//{
+			//int m = j+c ;
+
+			if ((state_cell == 1) && (live_neighbours < 2))
+
 				{
-					update_env[i][j] = 0;
+					update_env[r][c] = 0;
 				}
 					 // Cell dies due to over population
-				else if ((env[i][j] == 1) && (live_neighbours > 3))
+				else if ((state_cell  == 1) && (live_neighbours > 3))
 				{
-					update_env[i][j] = 0;
+					update_env[r][c] = 0;
 				}
 				// A new cell is born
-				else if ((env[i][j] == 0) && (live_neighbours == 3))
+				else if ((state_cell  == 0) && (live_neighbours == 3))
 				{
-					update_env[i][j] = 1;
+					update_env[r][c] = 1;
 				}
 				// Remains the same
 				else
 				{
-					update_env[i][j] = env[i][j];
+					update_env[r][c] = state_cell ;
 				}
 
-		}
 
-	}
 
 
 
@@ -206,23 +208,26 @@ void* updateCommFunc(void *param)
 	//printf("line one \n");
 	threadID_t index = *((threadID_t*)param);
 	// your code goes here
-	//printf("line two\n");
+	//printf("\n index.row =%d index.col=%d\n", index.row,index.col);
+
 	while(1)
 	{
-	for(size_t i = 0; i < config_NC; i++)
+	for(size_t i = 0; i < config_NE; i++)
     {
 		//printf("line three\n");
 		size_t row = index.row + i;
-	    for(size_t j = 0; j < config_MC; j++)
+	    for(size_t j = 0; j < config_ME; j++)
 		{
 	    	//printf("line four\n");
 			size_t col = index.col + j;
-	    	//printf("line five \n");
+	    	//printf("row = %d, col = %d \n", row,col);
             updateCell(row, col);
             //printf("line six \n");
 		}
 	}
+
 	}
+
 	//free(param);
 
 }

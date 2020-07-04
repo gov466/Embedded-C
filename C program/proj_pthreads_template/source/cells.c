@@ -64,12 +64,12 @@ size_t countLiveNeighbours(size_t row, size_t col)
 
 	// your code goes here
 	//size_t r_idx, c_idx, neigCount;
-	size_t startPosR = (row - 1 < 0) ? row : row-1;
-	size_t startPosC = (col - 1 < 0) ? col : col-1;
-	size_t endPosR =   (row + 1 > config_NE) ? row : row+1;
-	size_t endPosC =   (col + 1 > config_ME) ? col : col+1;
+	size_t startPosR = (row - 1 < 0) ? row : row-1; //checks start posistion of neighbours with respect to row
+	size_t startPosC = (col - 1 < 0) ? col : col-1; //checks start posistion of neighbours with respect to col
+	size_t endPosR =   (row + 1 > config_NE) ? row : row+1; //checks end position of neighbours with respect to row
+	size_t endPosC =   (col + 1 > config_ME) ? col : col+1;// checks end position of neighbours with respect to col
 	    // checks neighbouring cells
-	for (int i = startPosR; i <= endPosR; i++)
+	for (int i = startPosR; i <= endPosR; i++) //iterates loop with above values initialised for row and col to count the live neighbour cells
 	{
 		for (int j = startPosC; j <= endPosC; j++)
 		{
@@ -205,24 +205,23 @@ void copyEnvironment(void)
 
 void* updateCommFunc(void *param)
 {
-	//printf("line one \n");
-	threadID_t index = *((threadID_t*)param);
-	// your code goes here
-	//printf("\n index.row =%d index.col=%d\n", index.row,index.col);
 
-	while(1)
+	threadID_t index = *((threadID_t*)param); //typecasting to type threadID_t
+
+
+	while(1) //iterates loop to update each cellof a community
 	{
 	for(size_t i = 0; i < config_NE; i++)
     {
-		//printf("line three\n");
+
 		size_t row = index.row + i;
 	    for(size_t j = 0; j < config_ME; j++)
 		{
-	    	//printf("line four\n");
+
 			size_t col = index.col + j;
-	    	//printf("row = %d, col = %d \n", row,col);
+
             updateCell(row, col);
-            //printf("line six \n");
+
 		}
 	}
 

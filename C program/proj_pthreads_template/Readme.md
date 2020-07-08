@@ -1,4 +1,4 @@
-##Game of Life simulator
+Game of Life simulator
 Summary and rules
 
 This is a c implementation of John Conway's famous 'Game of Life'. The rules of the 'game' are simple. The universe of the game is a torus-connected two dimensional grid filled with 'live' cells (denoted by 'X' in my implementation) and 'dead' cells (denoted by ' '). At the beginning of the game, the grid is randomly populated with a some distribution of live and dead cells, and cells are either born or destroyed based on their interactions with their eight neighbors:

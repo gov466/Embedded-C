@@ -64,25 +64,25 @@ size_t countLiveNeighbours(size_t row, size_t col)
 
 	// your code goes here
 	//size_t r_idx, c_idx, neigCount;
-	size_t startPosR = (row - 1 < 0) ? row : row-1; //checks start posistion of neighbours with respect to row
-	size_t startPosC = (col - 1 < 0) ? col : col-1; //checks start posistion of neighbours with respect to col
-	size_t endPosR =   (row + 1 > config_NE) ? row : row+1; //checks end position of neighbours with respect to row
-	size_t endPosC =   (col + 1 > config_ME) ? col : col+1;// checks end position of neighbours with respect to col
-	    // checks neighbouring cells
+	size_t startPosR = (row - 1 < 0) ? row : row - 1; //checks start posistion of neighbours with respect to row
+	size_t startPosC = (col - 1 < 0) ? col : col - 1; //checks start posistion of neighbours with respect to col
+	size_t endPosR = (row + 1 > config_NE) ? row : row + 1; //checks end position of neighbours with respect to row
+	size_t endPosC = (col + 1 > config_ME) ? col : col + 1; // checks end position of neighbours with respect to col
+	// checks neighbouring cells
 	for (int i = startPosR; i <= endPosR; i++) //iterates loop with above values initialised for row and col to count the live neighbour cells
 	{
 		for (int j = startPosC; j <= endPosC; j++)
 		{
 			//checks if the cell is alive, if alive increments the count
-	        if(env[i][j])
-	        {
-	        	 cell_count++;
-	        }
+			if (env[i][j])
+			{
+				cell_count++;
+			}
 
-	    }
+		}
 	}
 
-		return cell_count;
+	return cell_count;
 }
 
 /*
@@ -107,39 +107,27 @@ void updateCell(size_t r, size_t c)
 	cell_t state_cell = env[r][c];
 	//cell_t  env[r][c];
 	size_t live_neighbours = countLiveNeighbours(r, c);
-	//printf('live_n=%d \n',live_neighbours );
-	// your code goes here
-	//for (int i = 0; i < config_NE; i++)
-	//{
-		//int k = i+r ;
-		//for (int j = 0; j < config_ME; j++)
-		//{
-			//int m = j+c ;
 
-			if ((state_cell == 1) && (live_neighbours < 2))
+	if ((state_cell == 1) && (live_neighbours < 2))
 
-				{
-					update_env[r][c] = 0;
-				}
-					 // Cell dies due to over population
-				else if ((state_cell  == 1) && (live_neighbours > 3))
-				{
-					update_env[r][c] = 0;
-				}
-				// A new cell is born
-				else if ((state_cell  == 0) && (live_neighbours == 3))
-				{
-					update_env[r][c] = 1;
-				}
-				// Remains the same
-				else
-				{
-					update_env[r][c] = state_cell ;
-				}
-
-
-
-
+	{
+		update_env[r][c] = 0;
+	}
+	// Cell dies due to over population
+	else if ((state_cell == 1) && (live_neighbours > 3))
+	{
+		update_env[r][c] = 0;
+	}
+	// A new cell is born
+	else if ((state_cell == 0) && (live_neighbours == 3))
+	{
+		update_env[r][c] = 1;
+	}
+	// Remains the same
+	else
+	{
+		update_env[r][c] = state_cell;
+	}
 
 }
 
@@ -206,24 +194,23 @@ void copyEnvironment(void)
 void* updateCommFunc(void *param)
 {
 
-	threadID_t index = *((threadID_t*)param); //typecasting to type threadID_t
+	threadID_t index = *((threadID_t*) param); //typecasting to type threadID_t
 
-
-	while(1) //iterates loop to update each cellof a community
+	while (1) //iterates loop to update each cellof a community
 	{
-	for(size_t i = 0; i < config_NE; i++)
-    {
-
-		size_t row = index.row + i;
-	    for(size_t j = 0; j < config_ME; j++)
+		for (size_t i = 0; i < config_NE; i++)
 		{
 
-			size_t col = index.col + j;
+			size_t row = index.row + i;
+			for (size_t j = 0; j < config_ME; j++)
+			{
 
-            updateCell(row, col);
+				size_t col = index.col + j;
 
+				updateCell(row, col);
+
+			}
 		}
-	}
 
 	}
 

@@ -30,16 +30,16 @@ WINDOW *win;
 /*
  * main code
  */
-void print_text()
-{
-	for(size_t i=0;i<config_NE;i++)
-	{
-		for(size_t j=0;j<config_ME;j++)
-		{
-			printf("%d",env[i][j]);
-		}
-	}
-}
+/*void print_text()
+ {
+ for(size_t i=0;i<config_NE;i++)
+ {
+ for(size_t j=0;j<config_ME;j++)
+ {
+ printf("%d",env[i][j]);
+ }
+ }
+ } */
 int main(void)
 {
 	pthread_t threadptrs[config_K * config_L]; // our thread handles
@@ -67,7 +67,7 @@ int main(void)
 			}
 		}
 	}
-	print_text();
+	//print_text();
 	// initialize display with ncurses
 	initDisplay();
 
@@ -82,7 +82,7 @@ int main(void)
 		{
 			ctr = 0;
 			updateDisplay();
-			print_text();
+			//print_text();
 		}
 		copyEnvironment(); // write changes to the environment, env, from update_env
 	}

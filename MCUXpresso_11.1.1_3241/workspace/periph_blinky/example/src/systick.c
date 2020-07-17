@@ -32,6 +32,7 @@
 #include "board.h"
 #include <stdio.h>
 
+
 /*****************************************************************************
  * Private types/enumerations/variables
  ****************************************************************************/
@@ -54,9 +55,16 @@
  * @brief	Handle interrupt from SysTick timer
  * @return	Nothing
  */
+void delay()
+{
+	long double i;
+	for(i=0;i<10000;i++);
+}
 void SysTick_Handler(void)
 {
 	Board_LED_Toggle(0);
+	delay();
+
 }
 
 /**

@@ -55,47 +55,33 @@
  * @brief	Handle interrupt from SysTick timer
  * @return	Nothing
  */
-//void delay()
-//{
-	//long double i;
-	//for(i=0;i<1000000;i++);
-//}
+void delay()
+{
+	for(int i=0;i<2000;i++)
+	{
+		for( int i=0;i<4500;i++);
+	}
+}
 void SysTick_Handler(void)
 {
 	//Board_LED_Toggle(0);
 	Board_LED_Set(0,0);
-	for(int i=0;i<2000;i++)
-	{
-		for( int i=0;i<4500;i++);
-	}
+	delay();
+
 	Board_LED_Set(0,1);
-	for(int i=0;i<2000;i++)
-	{
-		for( int i=0;i<4500;i++);
-	}
+	delay();
 
 	Board_LED_Set(1,0);
-	for(int i=0;i<2000;i++)
-	{
-		for( int i=0;i<4500;i++);
-	}
+	delay();
+
 	Board_LED_Set(1,1);
-	for(int i=0;i<2000;i++)
-	{
-		for( int i=0;i<4500;i++);
-	}
+	delay();
+
 	Board_LED_Set(2,0);
-	for(int i=0;i<2000;i++)
-	{
-		for( int i=0;i<4500;i++);
-	}
+	delay();
+
 	Board_LED_Set(2,1);
-	for(int i=0;i<2000;i++)
-	{
-		for( int i=0;i<4500;i++);
-	}
-
-
+	delay();
 
 }
 

@@ -1,0 +1,7 @@
+History of updates to CMSISv2p00_DSPLIB_CM3
+===========================================
+
+29 September 2011
+-----------------
+Fixed build issue so that library is built correctly for Cortex-M3 rather
+than Cortex-M4.

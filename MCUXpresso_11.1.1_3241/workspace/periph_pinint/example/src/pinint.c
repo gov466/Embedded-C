@@ -37,33 +37,33 @@
 
 /* Handy list of GPIO pins on 17xx/40xx boards.
  
-    LPCXpresso LPC1769 on base board...
+ LPCXpresso LPC1769 on base board...
  
-		PORT	PIN	Xpresso Pin	Function
-		----	---	-----------	------------------------------------------
-		0		17	12			Joystick center button
-		0		15	13			Joystick button
-		0		16	14			Joystick button
-		2		3	45			Joystick button (in towards battery on base board)
-		2		4	46			Joystick button (towards closest corner)
-		1		31	20			Wakeup button
-		0		22	24			LED2 (LED 0 in the software).
+ PORT	PIN	Xpresso Pin	Function
+ ----	---	-----------	------------------------------------------
+ 0		17	12			Joystick center button
+ 0		15	13			Joystick button
+ 0		16	14			Joystick button
+ 2		3	45			Joystick button (in towards battery on base board)
+ 2		4	46			Joystick button (towards closest corner)
+ 1		31	20			Wakeup button
+ 0		22	24			LED2 (LED 0 in the software).
 
-		2		0	42			RGB LED RED   PIO1_9
-		0		26	18			RGB LED BLUE  PIO1_2
-		2		1	43			RGB LED GREEN PIO1_10
+ 2		0	42			RGB LED RED   PIO1_9
+ 0		26	18			RGB LED BLUE  PIO1_2
+ 2		1	43			RGB LED GREEN PIO1_10
+
+ Embedded Artists Devkit LPC1788/LPC4088 on base board...
  
-    Embedded Artists Devkit LPC1788/LPC4088 on base board...
+ PORT	PIN	DIMM Pin	Function
+ ----	---	--------	------------------------------------------
+ 2		22	120-GPIO73	Joystick center button
+ 2		23	121-GPIO74	Joystick button
+ 2		25	122-GPIO75	Joystick button
+ 2		26	123-GPIO76  Joystick button
+ 2		27  124-GPIO77	Joystick button
  
-		PORT	PIN	DIMM Pin	Function
-		----	---	--------	------------------------------------------
-		2		22	120-GPIO73	Joystick center button
-		2		23	121-GPIO74	Joystick button
-		2		25	122-GPIO75	Joystick button
-		2		26	123-GPIO76  Joystick button
-    	2		27  124-GPIO77	Joystick button
-    	
-    	2		10  35-GPIO10	Interrupt button SW6
+ 2		10  35-GPIO10	Interrupt button SW6
  */
 
 #ifdef CHIP_LPC175X_6X
@@ -103,8 +103,10 @@
  */
 void GPIO_IRQ_HANDLER(void)
 {
-	Chip_GPIOINT_ClearIntStatus(LPC_GPIOINT, GPIO_INTERRUPT_PORT, 1 << GPIO_INTERRUPT_PIN);
+	Chip_GPIOINT_ClearIntStatus(LPC_GPIOINT, GPIO_INTERRUPT_PORT,
+			1 << GPIO_INTERRUPT_PIN);
 	Board_LED_Toggle(0);
+
 }
 
 /**
@@ -116,25 +118,43 @@ int main(void)
 	/* Generic Initialization */
 	SystemCoreClockUpdate();
 
-	/* Board_Init calls Chip_GPIO_Init and enables GPIO clock if needed,
-	   Chip_GPIO_Init is not called again */
-	Board_Init();
-	Board_LED_Set(0, false);
+	LPC_PINCON->PINMODE0 |= (3 << (9 * 2)); //Set P0.9 as Pull-Down
+	LPC_GPIO0->FIODIR &= ~(1 << 9);
+	LPC_GPIO0->FIODIR |= (1 << 8); //set P0.22 as output pin
+	while (1)
+	{
+		if ((LPC_GPIO0->FIOPIN & (1 << 9)))
+		{
+			LPC_GPIO0->FIOSET |= (1 << 8);
+		}
+		else
+		{
+			LPC_GPIO0->FIOCLR |= (1 << 8);
 
-	/* Configure GPIO interrupt pin as input */
-	Chip_GPIO_SetPinDIRInput(LPC_GPIO, GPIO_INTERRUPT_PORT, GPIO_INTERRUPT_PIN);
-
-	/* Configure the GPIO interrupt */
-	Chip_GPIOINT_SetIntFalling(LPC_GPIOINT, GPIO_INTERRUPT_PORT, 1 << GPIO_INTERRUPT_PIN);
-
-	/* Enable interrupt in the NVIC */
-	NVIC_ClearPendingIRQ(GPIO_INTERRUPT_NVIC_NAME);
-	NVIC_EnableIRQ(GPIO_INTERRUPT_NVIC_NAME);
-
-	/* Wait for interrupts - LED will toggle on each wakeup event */
-	while (1) {
-		__WFI();
+		}
 	}
 
-	return 0;
+/* Board_Init calls Chip_GPIO_Init and enables GPIO clock if needed,
+ Chip_GPIO_Init is not called again */
+Board_Init();
+Board_LED_Set(0, false);
+
+/* Configure GPIO interrupt pin as input */
+Chip_GPIO_SetPinDIRInput(LPC_GPIO, GPIO_INTERRUPT_PORT, GPIO_INTERRUPT_PIN);
+
+/* Configure the GPIO interrupt */
+Chip_GPIOINT_SetIntFalling(LPC_GPIOINT, GPIO_INTERRUPT_PORT,
+		1 << GPIO_INTERRUPT_PIN);
+
+/* Enable interrupt in the NVIC */
+NVIC_ClearPendingIRQ(GPIO_INTERRUPT_NVIC_NAME);
+NVIC_EnableIRQ(GPIO_INTERRUPT_NVIC_NAME);
+
+/* Wait for interrupts - LED will toggle on each wakeup event */
+while (1)
+{
+	__WFI();
+}
+
+return 0;
 }

@@ -118,24 +118,9 @@ int main(void)
 	/* Generic Initialization */
 	SystemCoreClockUpdate();
 
-	LPC_PINCON->PINMODE0 |= (3 << (9 * 2)); //Set P0.9 as Pull-Down
-	LPC_GPIO0->FIODIR &= ~(1 << 9);
-	LPC_GPIO0->FIODIR |= (1 << 8); //set P0.22 as output pin
-	while (1)
-	{
-		if ((LPC_GPIO0->FIOPIN & (1 << 9)))
-		{
-			LPC_GPIO0->FIOSET |= (1 << 8);
-		}
-		else
-		{
-			LPC_GPIO0->FIOCLR |= (1 << 8);
-
-		}
-	}
 
 /* Board_Init calls Chip_GPIO_Init and enables GPIO clock if needed,
- Chip_GPIO_Init is not called again */
+Chip_GPIO_Init is not called again */
 Board_Init();
 Board_LED_Set(0, false);
 

@@ -44,7 +44,11 @@
 /*****************************************************************************
  * Private functions
  ****************************************************************************/
-
+void ddelay(){
+	unsigned long int i1,j1;
+	for(j1=0;j1<100;j1++)for(i1=0;i1<30000;i1++);
+	for(j1=0;j1<100;j1++)for(i1=0;i1<30000;i1++);
+}
 /* Sets up system hardware */
 static void prvSetupHardware(void)
 {
@@ -53,8 +57,8 @@ static void prvSetupHardware(void)
 
 	/* Initial LED0 state is off */
 	Board_LED_Set(0, false);
-	/* Initial LED1 state is off */
-	Board_LED_Set(1, false);
+	/* Initial LED1  is off */
+	Board_LED_Set(1,false);
 	/* Initial LED2 state is off */
 	Board_LED_Set(2, false);
 }
@@ -62,38 +66,62 @@ static void prvSetupHardware(void)
 /* LED1 toggle thread */
 static void vLEDTask1(void *pvParameters) {
 	bool LedState = false;
-
+	//printf("vtask1");
 	while (1) {
-		Board_LED_Set(0, LedState);
+		Board_LED_Set(0, 0);
+		//Board_LED_Set(1, true);
+		//Board_LED_Set(2, true);
+		//ddelay();
 		LedState = (bool) !LedState;
 
 		/* About a 3Hz on/off toggle rate */
-		vTaskDelay(configTICK_RATE_HZ / 1);
+		vTaskDelay(configTICK_RATE_HZ );
+		Board_LED_Set(0, 1);
+		vTaskDelay(configTICK_RATE_HZ /2);
+		//Board_LED_Set(1, true);
+		//Board_LED_Set(2, true);
+
 	}
 }
 
 /* LED2 toggle thread */
 static void vLEDTask2(void *pvParameters) {
 	bool LedState = false;
-
+	//printf("vtask2");
+	vTaskDelay(configTICK_RATE_HZ + configTICK_RATE_HZ /2);
 	while (1) {
-		Board_LED_Set(1, LedState);
+		Board_LED_Set(1, 0);
+		//Board_LED_Set(0, true);
+		//Board_LED_Set(2, true);
+		//ddelay();
 		LedState = (bool) !LedState;
 
 		/* About a 7Hz on/off toggle rate */
-		vTaskDelay(configTICK_RATE_HZ / 1);
+		vTaskDelay(configTICK_RATE_HZ );
+		Board_LED_Set(1, 1);
+		vTaskDelay(configTICK_RATE_HZ /6);
+		//Board_LED_Set(0, true);
+		//Board_LED_Set(2, true);
 	}
 }
 /* LED3 toggle thread*/
 static void vLEDTask3(void *pvParameters) {
 	bool LedState = false;
-
+	vTaskDelay(configTICK_RATE_HZ+ configTICK_RATE_HZ /6);
+	//printf("vtask3");
 	while (1) {
-		Board_LED_Set(2, LedState);
+		Board_LED_Set(2, 0);
+		//Board_LED_Set(1, true);
+		//Board_LED_Set(0, true);
+		//ddelay();
 		LedState = (bool) !LedState;
 
 		/* About a 7Hz on/off toggle rate */
-		vTaskDelay(configTICK_RATE_HZ / 1); //set delay as you want
+		vTaskDelay(configTICK_RATE_HZ); //set delay as you want
+		Board_LED_Set(2, 1);
+		vTaskDelay(configTICK_RATE_HZ /14);
+		//Board_LED_Set(1, true);
+		//Board_LED_Set(0, true);
 	}
 }
 

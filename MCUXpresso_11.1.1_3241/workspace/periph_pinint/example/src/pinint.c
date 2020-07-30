@@ -31,6 +31,9 @@
 
 #include "board.h"
 
+
+
+
 /*****************************************************************************
  * Private types/enumerations/variables
  ****************************************************************************/
@@ -139,6 +142,7 @@ NVIC_EnableIRQ(GPIO_INTERRUPT_NVIC_NAME);
 while (1)
 {
 	__WFI();
+
 }
 
 return 0;

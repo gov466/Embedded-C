@@ -63,7 +63,7 @@ static void prvSetupHardware(void)
 /* LED1 toggle thread */
 static void vLEDTask1(void *pvParameters)
 {
-	//bool LedState = false;
+
 	while (1)
 	{
 		Board_LED_Set(0, 0);

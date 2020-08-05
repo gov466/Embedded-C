@@ -30,6 +30,7 @@
  */
 
 #include "board.h"
+#include "chip.h"
 
 
 

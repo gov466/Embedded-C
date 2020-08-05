@@ -43,7 +43,7 @@
 									<listOptionValue builtIn="false" value="../inc"/>
 								</option>
 								<option id="gnu.c.compiler.option.optimization.flags.167107899" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-Os" valueType="string"/>
-								<option id="com.crt.advproject.gcc.hdrlib.509623104" superClass="com.crt.advproject.gcc.hdrlib"/>
+								<option id="com.crt.advproject.gcc.hdrlib.509623104" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false"/>
 								<inputType id="com.crt.advproject.compiler.input.189471461" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
 							<tool id="com.crt.advproject.gas.lib.debug.1199056603" name="MCU Assembler" superClass="com.crt.advproject.gas.lib.debug">

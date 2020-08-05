@@ -26,6 +26,9 @@ int main(void)
   LPC_GPIO1->FIODIR &= ~(1 << 28); 	// Set buttons as input
   LPC_GPIO1->FIODIR |= (1 << 29); 	// Set LEDs as output
   LPC_GPIO1->FIOPIN |= (1 << 29); // Turn both LEDS on
+  LPC_GPIO1->FIODIR &= ~(1 << 25); 	// Set buttons as input
+  LPC_GPIO1->FIODIR |= (1 << 26); 	// Set LEDs as output
+  LPC_GPIO1->FIOPIN |= (1 << 26); // Turn both LEDS on
 
   while (1)
   {
@@ -38,6 +41,16 @@ int main(void)
     {
       // Turn LED on
       LPC_GPIO1->FIOCLR = (1 << 29);
+    }
+    if (getPinState(25))			// Check button pressed
+    {
+          // Turn LED off
+       LPC_GPIO1->FIOSET = (1 << 26);
+    }
+    else
+    {
+          // Turn LED on
+       LPC_GPIO1->FIOCLR = (1 << 26);
     }
   }
 }

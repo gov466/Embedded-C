@@ -1,1 +1,1 @@
-## Pushbutton interfacing with LPC1769
+## Pushbutton interfacing with external led LPC1769

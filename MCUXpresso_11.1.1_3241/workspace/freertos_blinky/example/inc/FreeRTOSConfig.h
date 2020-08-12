@@ -68,7 +68,7 @@
  * THESE PARAMETERS ARE DESCRIBED WITHIN THE 'CONFIGURATION' SECTION OF THE
  * FreeRTOS API DOCUMENTATION AVAILABLE ON THE FreeRTOS.org WEB SITE.
  *----------------------------------------------------------*/
-
+#define configUSE_TIMERS 1
 #define configUSE_PREEMPTION		1
 #define configUSE_IDLE_HOOK			1
 #define configMAX_PRIORITIES		( ( unsigned portBASE_TYPE ) 8 )

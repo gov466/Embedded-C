@@ -45,7 +45,7 @@
 /*****************************************************************************
  * Private functions
  ****************************************************************************/
-SemaphoreHandle_t xMutex;
+xSemaphoreHandle xMutex;
 /* Sets up system hardware */
 static void prvSetupHardware(void)
 {

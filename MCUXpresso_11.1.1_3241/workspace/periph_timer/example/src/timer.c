@@ -1,3 +1,4 @@
+
 /*
  * @brief Blinky example using timers
  *
@@ -58,7 +59,38 @@ void TIMER0_IRQHandler(void)
 {
 	if (Chip_TIMER_MatchPending(LPC_TIMER0, 1)) {
 		Chip_TIMER_ClearMatch(LPC_TIMER0, 1);
-		Board_LED_Toggle(0);
+		Board_LED_Set(0, 0);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		Board_LED_Set(0, 1);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		Board_LED_Set(1, 0);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		Board_LED_Set(1, 1);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		Board_LED_Set(2, 0);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		Board_LED_Set(2, 1);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+		for(int i=0;i<1000000;i++);
+
+
 	}
 }
 

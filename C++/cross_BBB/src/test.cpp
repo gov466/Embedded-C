@@ -8,7 +8,7 @@
 using namespace std;
 int main()
 {
-	cout<<"hello from ARM";
+	cout<<"hello from ARM\n";
 	return 0;
 }
 

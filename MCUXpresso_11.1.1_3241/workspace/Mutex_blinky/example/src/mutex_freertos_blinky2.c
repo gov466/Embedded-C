@@ -28,12 +28,11 @@
  * copyright, permission, and disclaimer notice must appear in all copies of
  * this code.
  */
-
 #include "board.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include "semphr.h"
 #include "queue.h"
+#include "semphr.h"
 
 /*****************************************************************************
  * Private types/enumerations/variables
@@ -46,8 +45,7 @@
 /*****************************************************************************
  * Private functions
  ****************************************************************************/
-xSemaphoreHandle sema_phore;
-
+xSemaphoreHandle xMutex;
 /* Sets up system hardware */
 static void prvSetupHardware(void)
 {
@@ -61,29 +59,20 @@ static void prvSetupHardware(void)
 	/* Initial LED2 state is off */
 	Board_LED_Set(2, false);
 }
-
-void one_sec_isr (void)
-{
-
-		xSemaphoreGiveFromISR(sema_phore, NULL);
-		vTaskDelay(2000);
-
-}
-
 /* LED1 toggle thread */
 static void vLEDTask1(void *pvParameters)
 {
 
 	while (1)
 	{
-		if (xSemaphoreTake(sema_phore, 9999999 ))
+		if(xSemaphoreTake( xMutex, portMAX_DELAY ));
 		{
-
 			Board_LED_Set(0, 0); //led 0 off
 			vTaskDelay(configTICK_RATE_HZ); //delay
 			Board_LED_Set(0, 1); //led 0 on
 			vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
 		}
+		xSemaphoreGive( xMutex );
 	}
 }
 static void vLEDTask2(void *pvParameters)
@@ -92,29 +81,37 @@ static void vLEDTask2(void *pvParameters)
 
 	while (1)
 	{
-		Board_LED_Set(1, 0); //led 1 off
-		vTaskDelay(configTICK_RATE_HZ);
-		Board_LED_Set(1, 1); //led 1 on
+		if(xSemaphoreTake( xMutex, portMAX_DELAY ));
+		{
+			Board_LED_Set(1, 0); //led 1 off
+			vTaskDelay(configTICK_RATE_HZ);
+			Board_LED_Set(1, 1); //led 1 on
 
-		/* About a 7Hz on/off toggle rate*/
-		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+			/* About a 7Hz on/off toggle rate*/
+			vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+		}
+		 xSemaphoreGive( xMutex );
 	}
 }
-
 static void vLEDTask3(void *pvParameters)
 {
 	vTaskDelay(3 * configTICK_RATE_HZ);
 	while (1)
 	{
+		if(xSemaphoreTake( xMutex, portMAX_DELAY ));
+				{
 
-		//Board_LED_Set(2, 1); //led 2 off
-		vTaskDelay(configTICK_RATE_HZ);
-		//Board_LED_Set(2, 1); //led 2 on
+					Board_LED_Set(2, 0); //led 2 off
+					vTaskDelay(configTICK_RATE_HZ);
+					Board_LED_Set(2, 1); //led 2 on
 
 		/* About a 7Hz on/off toggle rate*/
-		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+					vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+				}
+		 xSemaphoreGive( xMutex );
 	}
 }
+
 /*****************************************************************************
  * Public functions
  ****************************************************************************/
@@ -126,25 +123,26 @@ static void vLEDTask3(void *pvParameters)
 int main(void)
 {
 	prvSetupHardware();
-	vSemaphoreCreateBinary(sema_phore);
-	rit_setup_callback(one_sec_isr, 1000);
-	/* LED1 toggle thread */
+	xMutex = xSemaphoreCreateMutex();
+	if( xMutex != NULL )
+	{
+		/* LED1 toggle thread */
+		xTaskCreate(vLEDTask1, (signed char* ) "vTaskLed1",
+				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
+				(xTaskHandle *) NULL);
 
-	xTaskCreate(vLEDTask1, (signed char* ) "vTaskLed1",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
-			(xTaskHandle *) NULL);
+		/* LED2 toggle thread */
+		xTaskCreate(vLEDTask2, (signed char* ) "vTaskLed2",
+				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
+				(xTaskHandle *) NULL);
 
-	/* LED2 toggle thread */
-	xTaskCreate(vLEDTask2, (signed char* ) "vTaskLed2",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
-			(xTaskHandle *) NULL);
-
-	xTaskCreate(vLEDTask3, (signed char* ) "vTaskLed3",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
-			(xTaskHandle *) NULL);
+		xTaskCreate(vLEDTask3, (signed char* ) "vTaskLed3",
+				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
+				(xTaskHandle *) NULL);
 
 	/* Start the scheduler */
-	vTaskStartScheduler();
+		vTaskStartScheduler();
+	}
 
 	/* Should never arrive here */
 	return 1;

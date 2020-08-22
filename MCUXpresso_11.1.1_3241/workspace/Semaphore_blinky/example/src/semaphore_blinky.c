@@ -62,13 +62,16 @@ static void prvSetupHardware(void)
 	Board_LED_Set(2, false);
 }
 
-void one_sec_isr (void)
+/*static void vTask4(void) )
 {
 
-		xSemaphoreGiveFromISR(sema_phore, NULL);
-		vTaskDelay(2000);
+	while (1)
+	{
 
-}
+		xSemaphoreGive(sema_phore);
+		vTaskDelay(2000);
+	}
+}*/
 
 /* LED1 toggle thread */
 static void vLEDTask1(void *pvParameters)
@@ -76,7 +79,7 @@ static void vLEDTask1(void *pvParameters)
 
 	while (1)
 	{
-		if (xSemaphoreTake(sema_phore, 9999999 ))
+		if (xSemaphoreTake(sema_phore, portMAX_DELAY))
 		{
 
 			Board_LED_Set(0, 0); //led 0 off
@@ -92,27 +95,34 @@ static void vLEDTask2(void *pvParameters)
 
 	while (1)
 	{
-		Board_LED_Set(1, 0); //led 1 off
-		vTaskDelay(configTICK_RATE_HZ);
-		Board_LED_Set(1, 1); //led 1 on
+		if (xSemaphoreTake(sema_phore, portMAX_DELAY))
+		{
+			Board_LED_Set(1, 0); //led 1 off
+			vTaskDelay(configTICK_RATE_HZ);
+			Board_LED_Set(1, 1); //led 1 on
 
-		/* About a 7Hz on/off toggle rate*/
-		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+			/* About a 7Hz on/off toggle rate*/
+			vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+
+		}
 	}
+
 }
 
 static void vLEDTask3(void *pvParameters)
 {
-	vTaskDelay(3 * configTICK_RATE_HZ);
+	//vTaskDelay(3 * configTICK_RATE_HZ);
 	while (1)
 	{
+		xSemaphoreGive(sema_phore);
+		vTaskDelay(2000);
 
 		//Board_LED_Set(2, 1); //led 2 off
-		vTaskDelay(configTICK_RATE_HZ);
+		//vTaskDelay(configTICK_RATE_HZ);
 		//Board_LED_Set(2, 1); //led 2 on
 
 		/* About a 7Hz on/off toggle rate*/
-		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+		//vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
 	}
 }
 /*****************************************************************************
@@ -127,7 +137,6 @@ int main(void)
 {
 	prvSetupHardware();
 	vSemaphoreCreateBinary(sema_phore);
-	rit_setup_callback(one_sec_isr, 1000);
 	/* LED1 toggle thread */
 
 	xTaskCreate(vLEDTask1, (signed char* ) "vTaskLed1",

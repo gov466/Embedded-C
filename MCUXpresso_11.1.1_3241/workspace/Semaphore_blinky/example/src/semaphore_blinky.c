@@ -57,34 +57,35 @@ static void prvSetupHardware(void)
 	/* Initial LED0 state is off */
 	Board_LED_Set(0, false);
 	/* Initial LED1  is off */
-	Board_LED_Set(1,false);
+	Board_LED_Set(1, false);
 	/* Initial LED2 state is off */
 	Board_LED_Set(2, false);
 }
 
 /*static void vTask4(void) )
-{
+ {
 
-	while (1)
-	{
+ while (1)
+ {
 
-		xSemaphoreGive(sema_phore);
-		vTaskDelay(2000);
-	}
-}*/
+ xSemaphoreGive(sema_phore);
+ vTaskDelay(2000);
+ }
+ }*/
 
 /* LED1 toggle thread */
 static void vLEDTask1(void *pvParameters)
 {
+	xSemaphoreGive(xCountingSemaphore);
 
 	while (1)
 	{
-		xSemaphoreTake( xCountingSemaphore, portMAX_DELAY );
+		xSemaphoreTake(xCountingSemaphore, portMAX_DELAY);
 
-			Board_LED_Set(0, 0); //led 0 off
-			vTaskDelay(configTICK_RATE_HZ); //delay
-			Board_LED_Set(0, 1); //led 0 on
-			vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+		Board_LED_Set(0, 0); //led 0 off
+		vTaskDelay(configTICK_RATE_HZ); //delay
+		Board_LED_Set(0, 1); //led 0 on
+		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
 
 	}
 }
@@ -94,14 +95,13 @@ static void vLEDTask2(void *pvParameters)
 
 	while (1)
 	{
-		xSemaphoreTake( xCountingSemaphore, portMAX_DELAY );
-			Board_LED_Set(1, 0); //led 1 off
-			vTaskDelay(configTICK_RATE_HZ);
-			Board_LED_Set(1, 1); //led 1 on
+		xSemaphoreTake(xCountingSemaphore, portMAX_DELAY);
+		Board_LED_Set(1, 0); //led 1 off
+		vTaskDelay(configTICK_RATE_HZ);
+		Board_LED_Set(1, 1); //led 1 on
 
-			/* About a 7Hz on/off toggle rate*/
-			vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
-
+		/* About a 7Hz on/off toggle rate*/
+		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
 
 	}
 
@@ -134,9 +134,8 @@ static void vLEDTask3(void *pvParameters)
 int main(void)
 {
 	prvSetupHardware();
-	xCountingSemaphore = xSemaphoreCreateCounting( 10, 0 );
-	if(xCountingSemaphore != NULL)
-	{
+	xCountingSemaphore = xSemaphoreCreateCounting(2, 0);
+
 	/* LED1 toggle thread */
 
 	xTaskCreate(vLEDTask1, (signed char* ) "vTaskLed1",
@@ -151,12 +150,12 @@ int main(void)
 	xTaskCreate(vLEDTask3, (signed char* ) "vTaskLed3",
 			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle *) NULL);
-	}
-	/* Start the scheduler */
-	vTaskStartScheduler();
 
-	/* Should never arrive here */
-	return 1;
+/* Start the scheduler */
+vTaskStartScheduler();
+
+/* Should never arrive here */
+return 1;
 }
 
 /**

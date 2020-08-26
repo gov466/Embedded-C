@@ -46,7 +46,7 @@
 /*****************************************************************************
  * Private functions
  ****************************************************************************/
-xSemaphoreHandle sema_phore;
+xSemaphoreHandle xCountingSemaphore;
 
 /* Sets up system hardware */
 static void prvSetupHardware(void)
@@ -79,14 +79,13 @@ static void vLEDTask1(void *pvParameters)
 
 	while (1)
 	{
-		if (xSemaphoreTake(sema_phore, portMAX_DELAY))
-		{
+		xSemaphoreTake( xCountingSemaphore, portMAX_DELAY );
 
 			Board_LED_Set(0, 0); //led 0 off
 			vTaskDelay(configTICK_RATE_HZ); //delay
 			Board_LED_Set(0, 1); //led 0 on
 			vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
-		}
+
 	}
 }
 static void vLEDTask2(void *pvParameters)
@@ -95,8 +94,7 @@ static void vLEDTask2(void *pvParameters)
 
 	while (1)
 	{
-		if (xSemaphoreTake(sema_phore, portMAX_DELAY))
-		{
+		xSemaphoreTake( xCountingSemaphore, portMAX_DELAY );
 			Board_LED_Set(1, 0); //led 1 off
 			vTaskDelay(configTICK_RATE_HZ);
 			Board_LED_Set(1, 1); //led 1 on
@@ -104,25 +102,25 @@ static void vLEDTask2(void *pvParameters)
 			/* About a 7Hz on/off toggle rate*/
 			vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
 
-		}
+
 	}
 
 }
 
 static void vLEDTask3(void *pvParameters)
 {
-	//vTaskDelay(3 * configTICK_RATE_HZ);
+	vTaskDelay(3 * configTICK_RATE_HZ);
 	while (1)
 	{
-		xSemaphoreGive(sema_phore);
+		//xSemaphoreGive(sema_phore);
 		vTaskDelay(2000);
 
-		//Board_LED_Set(2, 1); //led 2 off
-		//vTaskDelay(configTICK_RATE_HZ);
-		//Board_LED_Set(2, 1); //led 2 on
+		Board_LED_Set(2, 1); //led 2 off
+		vTaskDelay(configTICK_RATE_HZ);
+		Board_LED_Set(2, 1); //led 2 on
 
 		/* About a 7Hz on/off toggle rate*/
-		//vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
 	}
 }
 /*****************************************************************************
@@ -136,22 +134,24 @@ static void vLEDTask3(void *pvParameters)
 int main(void)
 {
 	prvSetupHardware();
-	vSemaphoreCreateBinary(sema_phore);
+	xCountingSemaphore = xSemaphoreCreateCounting( 10, 0 );
+	if(xCountingSemaphore != NULL)
+	{
 	/* LED1 toggle thread */
 
 	xTaskCreate(vLEDTask1, (signed char* ) "vTaskLed1",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
+			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 3UL),
 			(xTaskHandle *) NULL);
 
 	/* LED2 toggle thread */
 	xTaskCreate(vLEDTask2, (signed char* ) "vTaskLed2",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
+			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 2UL),
 			(xTaskHandle *) NULL);
 
 	xTaskCreate(vLEDTask3, (signed char* ) "vTaskLed3",
 			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle *) NULL);
-
+	}
 	/* Start the scheduler */
 	vTaskStartScheduler();
 

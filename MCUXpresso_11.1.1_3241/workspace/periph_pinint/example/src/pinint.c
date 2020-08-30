@@ -32,9 +32,6 @@
 #include "board.h"
 #include "chip.h"
 
-
-
-
 /*****************************************************************************
  * Private types/enumerations/variables
  ****************************************************************************/
@@ -122,29 +119,30 @@ int main(void)
 	/* Generic Initialization */
 	SystemCoreClockUpdate();
 
+	/* Board_Init calls Chip_GPIO_Init and enables GPIO clock if needed,
+	 Chip_GPIO_Init is not called again */
+	Board_Init();
+	Board_LED_Set(0, true);
+	Board_LED_Set(1, true);
+	Board_LED_Set(2, true);
 
-/* Board_Init calls Chip_GPIO_Init and enables GPIO clock if needed,
-Chip_GPIO_Init is not called again */
-Board_Init();
-Board_LED_Set(0, false);
+	/* Configure GPIO interrupt pin as input */
+	Chip_GPIO_SetPinDIRInput(LPC_GPIO, GPIO_INTERRUPT_PORT, GPIO_INTERRUPT_PIN);
 
-/* Configure GPIO interrupt pin as input */
-Chip_GPIO_SetPinDIRInput(LPC_GPIO, GPIO_INTERRUPT_PORT, GPIO_INTERRUPT_PIN);
+	/* Configure the GPIO interrupt */
+	Chip_GPIOINT_SetIntFalling(LPC_GPIOINT, GPIO_INTERRUPT_PORT,
+			1 << GPIO_INTERRUPT_PIN);
 
-/* Configure the GPIO interrupt */
-Chip_GPIOINT_SetIntFalling(LPC_GPIOINT, GPIO_INTERRUPT_PORT,
-		1 << GPIO_INTERRUPT_PIN);
+	/* Enable interrupt in the NVIC */
+	NVIC_ClearPendingIRQ(GPIO_INTERRUPT_NVIC_NAME);
+	NVIC_EnableIRQ(GPIO_INTERRUPT_NVIC_NAME);
 
-/* Enable interrupt in the NVIC */
-NVIC_ClearPendingIRQ(GPIO_INTERRUPT_NVIC_NAME);
-NVIC_EnableIRQ(GPIO_INTERRUPT_NVIC_NAME);
+	/* Wait for interrupts - LED will toggle on each wakeup event */
+	while (1)
+	{
+		__WFI();
 
-/* Wait for interrupts - LED will toggle on each wakeup event */
-while (1)
-{
-	__WFI();
+	}
 
-}
-
-return 0;
+	return 0;
 }

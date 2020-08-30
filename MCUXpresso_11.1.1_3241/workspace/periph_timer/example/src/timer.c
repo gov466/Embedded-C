@@ -60,7 +60,7 @@ void delay()
 	long double i;
 	for(i=0;i<4;i++)
 	{
-		for(i=0;i<100000=0;i++);
+		for(i=0;i<100000;i++);
 	}
 }
 void TIMER0_IRQHandler(void)

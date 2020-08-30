@@ -29,6 +29,7 @@
 							<tool id="com.crt.advproject.cpp.lib.debug.1604093373" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.lib.debug">
 								<option id="com.crt.advproject.cpp.hdrlib.1221402037" superClass="com.crt.advproject.cpp.hdrlib" useByScannerDiscovery="false"/>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.50984090" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false"/>
+								<option id="com.crt.advproject.cpp.fpu.2129432435" superClass="com.crt.advproject.cpp.fpu"/>
 							</tool>
 							<tool id="com.crt.advproject.gcc.lib.debug.1004026908" name="MCU C Compiler" superClass="com.crt.advproject.gcc.lib.debug">
 								<option id="com.crt.advproject.gcc.arch.1404126263" name="Architecture" superClass="com.crt.advproject.gcc.arch" useByScannerDiscovery="true" value="com.crt.advproject.gcc.target.cm3" valueType="enumerated"/>
@@ -44,6 +45,7 @@
 								</option>
 								<option id="gnu.c.compiler.option.optimization.flags.167107899" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-Os" valueType="string"/>
 								<option id="com.crt.advproject.gcc.hdrlib.509623104" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false"/>
+								<option id="com.crt.advproject.gcc.fpu.405539451" superClass="com.crt.advproject.gcc.fpu"/>
 								<inputType id="com.crt.advproject.compiler.input.189471461" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
 							<tool id="com.crt.advproject.gas.lib.debug.1199056603" name="MCU Assembler" superClass="com.crt.advproject.gas.lib.debug">
@@ -51,6 +53,7 @@
 								<option id="com.crt.advproject.gas.thumb.430089063" name="Thumb mode" superClass="com.crt.advproject.gas.thumb" value="true" valueType="boolean"/>
 								<option id="gnu.both.asm.option.flags.crt.1310306982" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" value="-c -x assembler-with-cpp -D__REDLIB__ -DDEBUG -D__CODE_RED" valueType="string"/>
 								<option id="com.crt.advproject.gas.hdrlib.174861738" superClass="com.crt.advproject.gas.hdrlib"/>
+								<option id="com.crt.advproject.gas.fpu.1494773876" superClass="com.crt.advproject.gas.fpu"/>
 								<inputType id="com.crt.advproject.assembler.input.1424028465" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.774383791" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>

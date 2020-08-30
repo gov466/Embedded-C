@@ -33,7 +33,10 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
-#include "queue.h"
+struct val{
+	void * t;
+
+}k;
 
 /*****************************************************************************
  * Private types/enumerations/variables
@@ -46,7 +49,8 @@
 /*****************************************************************************
  * Private functions
  ****************************************************************************/
-xSemaphoreHandle xCountingSemaphore;
+// xCSemaphore;
+
 
 /* Sets up system hardware */
 static void prvSetupHardware(void)
@@ -76,52 +80,55 @@ static void prvSetupHardware(void)
 /* LED1 toggle thread */
 static void vLEDTask1(void *pvParameters)
 {
-	xSemaphoreGive(xCountingSemaphore);
-
+	//xSemaphoreGive(xCSemaphore);
+	struct val *tt = pvParameters;
 	while (1)
 	{
-		xSemaphoreTake(xCountingSemaphore, portMAX_DELAY);
+		if(xSemaphoreTake(tt->t, 50)){
 
 		Board_LED_Set(0, 0); //led 0 off
 		vTaskDelay(configTICK_RATE_HZ); //delay
 		Board_LED_Set(0, 1); //led 0 on
-		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
 
+		xSemaphoreGive((tt->t));
+		/* About a 7Hz on/off toggle rate*/
+		vTaskDelay(10);
+		}
 	}
 }
 static void vLEDTask2(void *pvParameters)
 {
-	vTaskDelay(configTICK_RATE_HZ + configTICK_RATE_HZ / 2); //delay
-
+	//vTaskDelay(configTICK_RATE_HZ + configTICK_RATE_HZ / 2); //delay
+	struct val *tt = pvParameters;
 	while (1)
 	{
-		xSemaphoreTake(xCountingSemaphore, portMAX_DELAY);
+		if(xSemaphoreTake(tt->t, 50)){
 		Board_LED_Set(1, 0); //led 1 off
 		vTaskDelay(configTICK_RATE_HZ);
 		Board_LED_Set(1, 1); //led 1 on
-
+		xSemaphoreGive((tt->t));
 		/* About a 7Hz on/off toggle rate*/
-		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
+		vTaskDelay(10);
 
-	}
+	}}
 
 }
 
 static void vLEDTask3(void *pvParameters)
-{
-	vTaskDelay(3 * configTICK_RATE_HZ);
+{	struct val *tt = pvParameters;
+	//vTaskDelay(3 * configTICK_RATE_HZ);
 	while (1)
 	{
 		//xSemaphoreGive(sema_phore);
-		vTaskDelay(2000);
-
-		Board_LED_Set(2, 1); //led 2 off
+		//vTaskDelay(2000);
+		if(xSemaphoreTake(tt->t, 50)){
+		Board_LED_Set(2, 0); //led 2 off
 		vTaskDelay(configTICK_RATE_HZ);
 		Board_LED_Set(2, 1); //led 2 on
-
+		xSemaphoreGive((tt->t));
 		/* About a 7Hz on/off toggle rate*/
-		vTaskDelay(3 * configTICK_RATE_HZ + configTICK_RATE_HZ / 2);
-	}
+		vTaskDelay(10);
+	}}
 }
 /*****************************************************************************
  * Public functions
@@ -131,24 +138,26 @@ static void vLEDTask3(void *pvParameters)
  * @brief	main routine for FreeRTOS blinky example
  * @return	Nothing, function should not exit
  */
+
 int main(void)
 {
 	prvSetupHardware();
-	xCountingSemaphore = xSemaphoreCreateCounting(2, 0);
-
+	 xSemaphoreHandle  xcSemaphore = NULL;
+	 xcSemaphore  = xSemaphoreCreateCounting(2,0);
+	 k.t = xcSemaphore;
 	/* LED1 toggle thread */
 
 	xTaskCreate(vLEDTask1, (signed char* ) "vTaskLed1",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 3UL),
+			configMINIMAL_STACK_SIZE,&k, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle *) NULL);
 
 	/* LED2 toggle thread */
 	xTaskCreate(vLEDTask2, (signed char* ) "vTaskLed2",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 2UL),
+			configMINIMAL_STACK_SIZE,&k, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle *) NULL);
 
 	xTaskCreate(vLEDTask3, (signed char* ) "vTaskLed3",
-			configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
+			configMINIMAL_STACK_SIZE, &k, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle *) NULL);
 
 /* Start the scheduler */

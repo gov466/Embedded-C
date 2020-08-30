@@ -53,11 +53,11 @@ static void prvSetupHardware(void)
 	Board_Init();
 
 	/* Initial LED0 state is off */
-	Board_LED_Set(0, false);
+	Board_LED_Set(0, true);
 	/* Initial LED1  is off */
-	Board_LED_Set(1,false);
+	Board_LED_Set(1,true);
 	/* Initial LED2 state is off */
-	Board_LED_Set(2, false);
+	Board_LED_Set(2, true);
 }
 /* LED1 toggle thread */
 static void vLEDTask1(void *pvParameters)

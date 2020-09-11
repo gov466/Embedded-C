@@ -48,7 +48,7 @@ Second parameter title is in gchar type.gchar is defined in glib library and the
 The function
 void gtk_window_set_position(GtkWindow *window, GtkWindowPosition position)
 sets the position of window.position can be:
--GTK_WIN_POS_NONE
--GTK_WIN_POS_CENTER
--GTK_WIN_POS_MOUSE
--GTK_WIN_POS_CENTER_ALWAYS
+- GTK_WIN_POS_NONE
+- GTK_WIN_POS_CENTER
+- GTK_WIN_POS_MOUSE
+- GTK_WIN_POS_CENTER_ALWAYS

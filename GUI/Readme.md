@@ -26,6 +26,7 @@ The input used after -o parameter is the name of compiled program.
 It is assumed that GTK is installed on your system. The lastest versions of GTk can found at ftp.gtk.org.Let’s write our first program. 
 This program creates a 200x200 pixel wide, empty window.
 
+```
 #include <gtk/gtk.h>
 int main( int   argc,          char *argv[] )
 { 
@@ -36,7 +37,9 @@ int main( int   argc,          char *argv[] )
   gtk_main ();
   return(0);
   
-}
+} 
+```
+
 
 GtkWidget is a variable type to define various components like window, button, label... 
 In this example,a window is defined like the following:
@@ -50,9 +53,9 @@ initiates the toolkit and gets the parameters entered in commandline. This funct
 GtkWidget *gtk_window_new(GtkWindowType windowtype) creates a new window.
 
 Window type can be:
--GTK_WINDOW_TOPLEVEL
--GTK_WINDOW_DIALOG
--GTK_WINDOW_POPUP
+- GTK_WINDOW_TOPLEVEL
+- GTK_WINDOW_DIALOG
+- GTK_WINDOW_POPUP
 
 void gtk_widget_show(GtkWidget *widget) is used to make the component appear in a window. After defining a component and changing attributes, this function must be used.void gtk_main(void) prepares windows and all components to appear in the screen. This function must be used at the end of GTK programs.
 

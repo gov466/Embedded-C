@@ -15,3 +15,7 @@ The authors of GTK are:
 -  Josh MacDonald
 
 GTK is object-oriented application user interface. Although written in C, it uses idea of classes and callback functions.
+
+### Compiling
+In order to compile GTK programs, you need to tell gcc what GTK libraries are and where they are. The gtk-config command is "knows" this.
+``` gtk-config --cflags --libs ```

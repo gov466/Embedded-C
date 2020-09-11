@@ -13,4 +13,5 @@ The authors of GTK are:
 -  Peter Mattis
 -  Spencer Kimball
 -  Josh MacDonald
+
 GTK is object-oriented application user interface. Although written in C, it uses idea of classes and callback functions.

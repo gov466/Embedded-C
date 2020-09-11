@@ -39,13 +39,33 @@ int main( int   argc,          char *argv[] )
 }
 
 GtkWidget is a variable type to define various components like window, button, label... 
-In this example,a window is defined like the following:GtkWidget *window; void gtk_init(int *argc,char argv) 
+In this example,a window is defined like the following:
+
+GtkWidget *window;
+
+void gtk_init(int *argc,char argv) 
+
 initiates the toolkit and gets the parameters entered in commandline. This function must be used after definening components.
-GtkWidget *gtk_window_new(GtkWindowType windowtype) creates a new window. 
-Window type canbe:GTK_WINDOW_TOPLEVELGTK_WINDOW_DIALOGGTK_WINDOW_POPUPvoid gtk_widget_show(GtkWidget *widget) is used to make the component appear in a window. After defining a component and changing attributes, this function must be used.void gtk_main(void) prepares windows and all components to appear in the screen. This function must be used at the end of GTK programs.Let’s use some properties of window such as titles, size, position...void gtk_window_set_title(GtkWindow *window,const gchar *title) is used to set or change the title of window. 
+
+GtkWidget *gtk_window_new(GtkWindowType windowtype) creates a new window.
+
+Window type can be:
+-GTK_WINDOW_TOPLEVEL
+-GTK_WINDOW_DIALOG
+-GTK_WINDOW_POPUP
+
+void gtk_widget_show(GtkWidget *widget) is used to make the component appear in a window. After defining a component and changing attributes, this function must be used.void gtk_main(void) prepares windows and all components to appear in the screen. This function must be used at the end of GTK programs.
+
+Let’s use some properties of window such as titles, size, position...
+
+void gtk_window_set_title(GtkWindow *window,const gchar *title) is used to set or change the title of window. 
 First parameter of this function is in GtkWindow type. But window variable is in GtkWidgettype. While compiling, we will be warned about it. Atlhough compiled program works, it is better to correct it. GTK_WINDOW(GtkWidget *widget) is used for that.
-Second parameter title is in gchar type.gchar is defined in glib library and the same as char type.void gtk_window_set_default_size(GtkWindow *window, gint width, gint height) sets the size ofwindow. Like gchar, gint is defined in glib and the same as int.
+Second parameter title is in gchar type.gchar is defined in glib library and the same as char type.
+
+void gtk_window_set_default_size(GtkWindow *window, gint width, gint height) sets the size ofwindow. Like gchar, gint is defined in glib and the same as int.
+
 The function
+
 void gtk_window_set_position(GtkWindow *window, GtkWindowPosition position)
 sets the position of window.position can be:
 - GTK_WIN_POS_NONE

@@ -11,13 +11,7 @@
  *  Created on: Sep. 23, 2020
  *      Author: govind
  */
-/******************************************************************************
 
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
 
 #include<stdio.h>
 #include<time.h>
@@ -59,7 +53,10 @@ int main()
 	printf("==================================\n");
 	printf("Qty\tProduct\t      Price     Sum\n");
 	printf("==================================\n");
+	for(int i=0;i<5;i++)
+	{
 	printf("%d\t%s     %d\t %.2f\n",qty,fud_name,price,sum);
+	}
 	printf("==================================\n");
 
 	printf("Subtotal                    %.2f \n", sum);

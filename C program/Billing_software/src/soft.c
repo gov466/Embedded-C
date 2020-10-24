@@ -1,5 +1,5 @@
 /*
- * soft.c
+ * soft.c progam for billing
  *
  *  Created on: Sep. 23, 2020
  *      Author: govind

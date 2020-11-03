@@ -6,7 +6,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <unistd.h> //unix standard
 #include <linux/i2c-dev.h>  //header file to control i2c devices from user space
 #include <fcntl.h>  //file control operations
 #include <sys/ioctl.h>   //input -output control
@@ -76,7 +76,7 @@ char convert_to_nibbels(char foo) //Convert data to nibbels
 
 }
 
-char convert_cmd_to_nibbels(char foo) //
+char convert_cmd_to_nibbels(char foo) //convert commands to nibbles
 
 {
 
@@ -113,14 +113,14 @@ char convert_cmd_to_nibbels(char foo) //
 
 }
 
-void i2c_send_byte(unsigned char data) //Sens a byte of data via i2c
+void i2c_send_byte(unsigned char data) //Send a byte of data via i2c
 {
 	unsigned char byte[1];
 	byte[0] = data;
-	write(i2cFile, byte, sizeof(byte));
-	/* -------------------------------------------------------------------- *
-	 * Below wait creates 1msec delay, needed by display to catch commands  *
-	 * -------------------------------------------------------------------- */
+	write(i2cFile, byte, sizeof(byte)); //writing data to bus
+	/*
+	  Below wait creates 1msec delay, needed by display to catch commands  */
+
 	usleep(1000);
 }
 
@@ -159,10 +159,10 @@ void go_to(int line, char position)  //Function to move cursor of lcd
 {
 	if (line == 1) {
 		cursor_pos = position;
-		position = 0x80 + position;
+		position = 0x80 + position; //cursor on 1st line 0x80
 	} else if (line == 2) {
 		cursor_pos = position + 40;
-		position = 0xC0 + position;
+		position = 0xC0 + position; //cursor posistin on satrt of second line
 	}
 	send_cmd_char_to_lcd(position);
 }

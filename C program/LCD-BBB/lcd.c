@@ -4,8 +4,8 @@
  *  Created on: Nov. 2, 2020
  *      Author: govind
  */
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> //standard input /output
+#include <stdlib.h> //standard library
 #include <unistd.h> //unix standard
 #include <linux/i2c-dev.h>  //header file to control i2c devices from user space
 #include <fcntl.h>  //file control operations
@@ -162,7 +162,7 @@ void go_to(int line, char position)  //Function to move cursor of lcd
 		position = 0x80 + position; //cursor on 1st line 0x80
 	} else if (line == 2) {
 		cursor_pos = position + 40;
-		position = 0xC0 + position; //cursor posistin on satrt of second line
+		position = 0xC0 + position; //cursor posistion on start of second line
 	}
 	send_cmd_char_to_lcd(position);
 }

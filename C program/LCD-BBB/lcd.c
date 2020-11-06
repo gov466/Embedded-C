@@ -202,8 +202,6 @@ void send_simple_string_to_lcd(char *str) //A function to send Simple String to 
 void main() {
 
 	i2c_start(); //Start I2C Communication
-	debug = 1; //
-	cursor_pos = 1; //
 
 	/* -------------------------------------------------------------------- *
 	 * Initialize the display, using the 4-bit mode initialization sequence *

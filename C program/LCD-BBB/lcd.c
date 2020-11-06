@@ -53,22 +53,22 @@ char convert_to_nibbels(char foo) //Convert data to nibbels
 
 	n1 = foo & mask1;
 	n1 = n1 | mask2;
-	//printf("n1 is : 0x%x \r\n",n1);
+
 
 	n2 = foo & mask2;
 	n2 = n2 << 4;
 	n2 = n2 | mask2;
-	//printf("n2 is : 0x%x \r\n",n2);
+
 
 	out1 = n1 & ln1;
-	//printf("out1 is : 0x%x \r\n",out1);
+
 	out2 = n1 & ln2;
-	//printf("out2 is : 0x%x \r\n",out2);
+
 
 	out3 = n2 & ln1;
-	//printf("out3 is : 0x%x \r\n",out3);
+	/
 	out4 = n2 & ln2;
-	//printf("out4 is : 0x%x \r\n",out4);
+
 	out[0] = out1;
 	out[1] = out2;
 	out[2] = out3;
@@ -90,22 +90,22 @@ char convert_cmd_to_nibbels(char foo) //convert commands to nibbles
 
 	n1 = foo & mask1;
 	n1 = n1 | mask2;
-	//printf("n1 is : 0x%x \r\n",n1);
+
 
 	n2 = foo & mask2;
 	n2 = n2 << 4;
 	n2 = n2 | mask2;
-	//printf("n2 is : 0x%x \r\n",n2);
+
 
 	out1 = n1 & ln1;
-	//printf("out1 is : 0x%x \r\n",out1);
+
 	out2 = n1 & ln2;
-	//printf("out2 is : 0x%x \r\n",out2);
+
 
 	out3 = n2 & ln1;
-	//printf("out3 is : 0x%x \r\n",out3);
+
 	out4 = n2 & ln2;
-	//printf("out4 is : 0x%x \r\n",out4);
+
 	out[0] = out1;
 	out[1] = out2;
 	out[2] = out3;

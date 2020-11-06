@@ -209,17 +209,17 @@ void main() {
 	 * Initialize the display, using the 4-bit mode initialization sequence *
 	 * -------------------------------------------------------------------- */
 
-	sleep(0.4);                // wait 40msec
+	sleep(0.4);                // wait 0.4sec
 	i2c_send_byte(0b00110100); // D7=0, D6=0, D5=1, D4=1, RS,RW=0 EN=1
 	i2c_send_byte(0b00110000); // D7=0, D6=0, D5=1, D4=1, RS,RW=0 EN=0
 
-	sleep(0.1);                // wait 10msec
+	sleep(0.1);                // wait 0.1sec
 	i2c_send_byte(0b00110100); //
 	i2c_send_byte(0b00110000); // same
-	sleep(0.1);                // wait 10msec
+	sleep(0.1);                // wait 0.1sec
 	i2c_send_byte(0b00110100); //
 	i2c_send_byte(0b00110000); // 8-bit mode init complete
-	sleep(0.1);                // wait 10msec
+	sleep(0.1);                // wait 0.1sec
 	i2c_send_byte(0b00100100); //
 	i2c_send_byte(0b00100000); // switched now to 4-bit mode
 

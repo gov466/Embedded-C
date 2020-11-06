@@ -177,19 +177,6 @@ void send_char_to_lcd(char foo)  //Sensing character to lcd
 	cursor_pos++;
 }
 
-void send_string_to_lcd(int argc, char *str[]) //Send a String to LCD
-{
-	int i, counter;
-	for (counter = 1; counter < argc; counter++) {
-		for (i = 0; str[counter][i] != 0x00; i++) {
-			send_char_to_lcd(str[counter][i]);
-			if (cursor_pos == (NUMBER_OF_CHAR_PER_LINE + 1)) {
-				go_to(2, 0);
-			}
-		}
-	}
-}
-
 void send_simple_string_to_lcd(char *str) //A function to send Simple String to LCD
 {
 

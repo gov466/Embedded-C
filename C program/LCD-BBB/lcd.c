@@ -48,15 +48,15 @@ char convert_to_nibbels(char foo) //Convert data to nibbels
 	ln1 = 0b11111101;
 	ln2 = 0b11111001;
 
-	mask1 = 0b11110000;
-	mask2 = 0b00001111;
+	mask1 = 0b11110000; //0xF0
+	mask2 = 0b00001111; //0x0F
 
-	n1 = foo & mask1;
-	n1 = n1 | mask2;
+	n1 = foo & mask1; //AND operation to extract D7-D4
+	n1 = n1 | mask2; 
 
 
-	n2 = foo & mask2;
-	n2 = n2 << 4;
+	n2 = foo & mask2; //AND operation to extract D3-D0
+	n2 = n2 << 4; 
 	n2 = n2 | mask2;
 
 

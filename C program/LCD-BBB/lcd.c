@@ -194,7 +194,7 @@ void main() {
 
 	 
 	send_simple_string_to_lcd("CAR OVERSPEED");//Print a message on LCD
-	go_to(2,3);//Go to Line 2
+	go_to(2,0);//Go to Line 2
 	send_simple_string_to_lcd("DETECTION SYSTEM");//Print a message on LCD
 		 
 	  

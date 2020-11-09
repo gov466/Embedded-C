@@ -38,9 +38,9 @@ void i2c_start() //Function to start i2c communication
   
 void i2c_send_byte(unsigned char data) //Send a byte of data via i2c 
 {  
-   unsigned char byte[1];  
+   unsigned char byte[1];  //character variable of size 1byte
    byte[0] = data;  
-   write(i2cFile, byte, sizeof(byte));   
+   write(i2cFile, byte, sizeof(byte));    //writing data to i2cfile ,data,size of data
    /* -------------------------------------------------------------------- * 
     * Below wait creates 1msec delay, needed by display to catch commands  * 
     * -------------------------------------------------------------------- */  

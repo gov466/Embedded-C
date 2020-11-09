@@ -119,11 +119,11 @@ void send_simple_string_to_lcd(char *str) //A function to send Simple String to 
 	
 		char n1,n2,ln1,ln2,mask1,mask2;  
 			
-		ln1 = 0b11111101;  
-		ln2 = 0b11111001;  
+		ln1 = 0b11111101;   //0xFD
+		ln2 = 0b11111001;   //0xF9
 			
-		mask1 = 0b11110000;  
-		mask2 = 0b00001111;  
+		mask1 = 0b11110000;  //0xF0
+		mask2 = 0b00001111;  //0x0F
 		  
 		n1 = (chr & mask1)| mask2;  
 		n2 =  ((chr & mask2)<<4)|mask2;

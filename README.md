@@ -119,4 +119,4 @@ You should then have a launcher for Eclipse JEE Oxygen… open Dash or the activ
 
 ## License
 
-MIT © [Govind raj]()
+MIT ©
